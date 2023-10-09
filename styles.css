@@ -35,13 +35,14 @@ button {
   display: inline-block;
   font-size: 16px;
 }
-.quiz-title{
-    color: chocolate;
-    
+ 
+.favicon-design{
+    color: wheat;
 }
 #timer {
     font-size: 24px;
     margin-top: 50px;
+
     font-weight: bold;
 }
 
@@ -52,9 +53,10 @@ button {
 #options-container{
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
+    /* background-color: chocolate; */
     justify-content: center;
-    /* background-color: coral; */
+    flex-grow: 2;
+    flex-wrap: nowrap;
     gap: 50px;
 }
 .options-button {
@@ -81,5 +83,27 @@ button {
     align-items: center;
     justify-content: center;
     font-weight: 600;
+}
+/* Mobile Responsive Design */
+@media screen and (max-width:800px){
+    #options-container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: white;
+        padding: 30px;
+        justify-content: center;
+        
+     }
+
+    .options-button {
+        display: block;
+        font-size: 16px;
+        background-color:#007BFF;
+        color: #fff;
+        border: black ;
+        border-radius: 5px;
+        cursor: pointer;
+    }
     
 }
