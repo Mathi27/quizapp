@@ -34,6 +34,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonClickSound = document.getElementById("buttonClickSound");
     const timerCompletionSound = document.getElementById("bellSound");
     const restartButton = document.getElementById("restart-button");
+    const collectDataButton = document.getElementById("collect-data-button")
+    const userNameInput = document.getElementById("user-name-input");
+    const phoneNumberInput = document.getElementById("phone-number-input");
+    const inputContainer = document.getElementById("input-container");
+
+
+    // Data collection:
+    collectDataButton.addEventListener("click",()=>{
+        const userName = userNameInput.value;
+        const phoneNumber = phoneNumberInput.value.trim();
+
+        if(!userName || !phoneNumber){
+            alert("Please Enter both Name and Phone Number");
+            return;
+        }
+        // store user name and phone number in local storage.
+        localStorage.setItem("userName",userName);
+        localStorage.setItem("phoneNumber",phoneNumber);
+        console.log("Starting QUIZ");
+        startScreen.style.display = "none";
+        quizScreen.style.display = "block";
+        startQuiz();
+        document.getElementById("user-name").textContent = userName;
+
+    });
+    
+
     document.addEventListener("click", () => {
         userInteracted = true;
     });
@@ -47,10 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();          
     });
 
-    startButton.addEventListener("click", () => {
-        buttonClickSound.play();
+    // startButton.addEventListener("click", () => {
+    //     buttonClickSound.play();
         
-    });
+        
+    // });
     
      
    
@@ -74,29 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("user-name").textContent = userName;
         startQuiz();
     }
-
+    // THis start button is initial page UI button.
     startButton.addEventListener("click", () => {
         buttonClickSound.play(); 
         if (!hasClickedStartButton) {
-            userName = prompt("Enter your Name | பெயர் ");
-            if (!userName) {
-                alert("பெயர் | Please Enter Your Name :");
-                return;
-            }
-            hasClickedStartButton = true; //  made this flag to true
-          
-            localStorage.setItem("userName", userName);
-            setTimeout( ()=>{
-                clearUserNameFromLocalStorage();
-                alert("User Name cleared from Cache !");
-                console.log("Cache cleared.");
-                console.log("65 seconds cleared");
-            },65000); //65 seconds
+           startButton.style.display = "none";
+            
+
+           //Enabling the Input
+           inputContainer.style.display = "none";
+           inputContainer.style.display = "block";
+            
         }
-        startScreen.style.display = "none";
-        quizScreen.style.display = "block";
-        document.getElementById("user-name").textContent = userName;
-        startQuiz();
+        // startScreen.style.display = "none";
+        // quizScreen.style.display = "block";
+        // document.getElementById("user-name").textContent = userName;
+        // startQuiz();
 
       
     });
