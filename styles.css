@@ -22,6 +22,23 @@ body {
     padding: 10px;
     border-radius: 10px;
 }
+.privacy-policy{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    font-size: 12px;
+    transform: translateX(-50%);    
+}
+.privacy-policy:hover{
+      color: white;
+    
+}
+.privacy-policy:active {
+    color: white; /* Color to change to when active */
+}
+.privacy-policy:visited{
+    color: wheat;
+}
 
 .point-value {
 
@@ -239,6 +256,17 @@ button {
 
 .options-button:hover {
     outline: 0;
+}
+.footer-container{
+    color: wheat;
+    font-size: 10px;
+}
+.quiz-container {
+    z-index: 1;
+}
+
+.footer-container {
+    z-index: 2;
 }
 
 /* Mobile Responsive Design */

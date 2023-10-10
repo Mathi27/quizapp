@@ -49,6 +49,17 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Please Enter both Name and Phone Number");
             return;
         }
+        // Validation for Username
+        if (!/^[A-Za-z]+$/.test(userName)) {
+            alert("User Name should contain only letters");
+            return;
+        }
+        // Validation for Phonenumber
+        if (!/^\d+$/.test(phoneNumber)) {
+            alert("Phone Number should contain only numbers");
+            return;
+        }
+    
         // store user name and phone number in local storage.
         localStorage.setItem("userName",userName);
         localStorage.setItem("phoneNumber",phoneNumber);
