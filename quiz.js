@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         quizScreen.style.display = "block";
         startQuiz();
         document.getElementById("user-name").textContent = userName;
-
+      
+    
     });
     
 
@@ -85,11 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();          
     });
 
-    // startButton.addEventListener("click", () => {
-    //     buttonClickSound.play();
-        
-        
-    // });
+  
     
      
    
@@ -123,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
            //Enabling the Input
            inputContainer.style.display = "none";
            inputContainer.style.display = "block";
+           
             
         }
         // startScreen.style.display = "none";
@@ -189,6 +187,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // BUG : API Request is not hittting
+    function hitApiRequest(){
+        const apiURL = "https://jsonplaceholder.typicode.com/users";
+        
+        fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();  
+    })
+    .then(data => {
+    
+      console.log('API response data:', data);
+     })
+    .catch(error => {
+      console.error('API request failed:', error);
+    });
+        
+
+    }
     function checkAnswer(selectedOption) {
         // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
         const correctAnswer = questions[currentQuestion].answer;
