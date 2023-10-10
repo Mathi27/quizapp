@@ -7,21 +7,30 @@
     <title>Puzzles | Win Crackers 🧨</title>
     <link rel="icon" href="https://imgs.search.brave.com/sSewpo6E5a7mdqLAAIgA6DHIkw-Ed9hpheF4Y93pHf4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNi8w/NC8xMy8xNi8wOS9w/aS0xMzI3MTQ1XzY0/MC5wbmc">
  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oi&family=Titan+One&display=swap" rel="stylesheet">
 
-
+<!-- Tamil Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oi&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- <canvas id="canvas"></canvas> -->
+    <canvas id="firework"></canvas>
+
     <div class="quiz-container">
       
      <div id="start-screen">
-    <p>Solve Puzzle | <b>Win Crackers</b> 🧨</p>
+    <p class="start-title">இலவச பட்டாசு 🧨</p>
     <button id="start-button">Start</button>
      </div>
         <div id="quiz-screen" style="display: none;">
-            <p class="Welcome-label">Welcome, <span id="user-name"></span>!</p>
+            <p class="Welcome-label">Welcome , <span id="user-name"></span>!</p>
         <div id="question-container">
             <p id="question"></p>
-            <div id="score-display">Score: 0</div>
+            <div id="score-display">Points: <span class="point-value">0</span></div>
             <div id="options-container"></div>
         </div>
         <div class="timer-container">
@@ -39,11 +48,14 @@
     </div>
 </div>
 
-    <script src="quiz.js"></script>
+    <script type="module"  src="quiz.js"></script>
     <audio id="buttonClickSound" src="audio/button-click.mp3"></audio>
     <audio id="bellSound" src="audio/bell-sound.mp3"></audio>
-  
-   
-      
+    <script src="cracker2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.2/lottie.min.js"></script>
+    <script type="module" src="question.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+
 </body>
 </html>
