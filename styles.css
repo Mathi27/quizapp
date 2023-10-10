@@ -4,41 +4,52 @@ body {
     text-align: center;
 }
 
+.Welcome-label {
+    font-size: 20px;
+}
+
 .quiz-container {
-    background-color: #fff;
-    padding: 20px;
+  
+    padding: 100px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
+    max-width: 900px;
     margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
 }
-#question{
+
+#question {
     font-size: 25px;
     font-weight: bold;
     padding: 10px;
-    border-radius: 10px;
+     
 }
+
 button {
     background-color: #007BFF;
     /* background-color: #4CAF50;   */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 30px;
-  display: inline-block;
-  font-size: 16px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 16px;
 }
- 
-.favicon-design{
+
+.favicon-design {
     color: wheat;
 }
+
 #timer {
     font-size: 24px;
     margin-top: 50px;
@@ -50,21 +61,34 @@ button {
     font-size: 18px;
     margin-top: 20px;
 }
-#options-container{
+
+#options-container {
     display: flex;
     flex-direction: row;
-    /* background-color: chocolate; */
+    
+    padding: 40px;
     justify-content: center;
     flex-grow: 2;
     flex-wrap: nowrap;
     gap: 50px;
 }
+.center-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  
+}
+ #restart-button{
+    display: none;
+ }
+
 .options-button {
     display: block;
     margin: 10px 0;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
+    font-size: 50px;
+    
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -72,38 +96,169 @@ button {
 }
 
 .options-button:hover {
-    background-color: #0056b3;
+    background-color: #fee6e3;
 }
-.timer-container{
+
+.timer-container {
     display: flex;
     /* background-color: plum; */
-  
+
     border-radius: 10px;
     gap: 10px;
     align-items: center;
     justify-content: center;
     font-weight: 600;
 }
+
+
+
+/* <!-- HTML !-->
+<button class="button-56" role="button">Button 56</button> */
+
+/* CSS */
+.options-button {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.options-button:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.options-button:hover:after {
+  transform: translate(0, 0);
+}
+
+.options-button:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.options-button:hover {
+  outline: 0;
+}
 /* Mobile Responsive Design */
-@media screen and (max-width:800px){
-    #options-container{
+@media screen and (max-width:800px) {
+    #options-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        background-color: white;
+        
         padding: 30px;
         justify-content: center;
-        
-     }
+
+    }
 
     .options-button {
         display: block;
         font-size: 16px;
-        background-color:#007BFF;
-        color: #fff;
-        border: black ;
+        background-color: #ffdeda;
+        color: black;
+        border: black;
         border-radius: 5px;
         cursor: pointer;
+        background-color: #fee6e3;
+        border: 2px solid #111;
     }
-    
+
+    .options-button:after {
+        background-color: #111;
+        border-radius: 8px;
+        content: "";
+        display: block;
+        height: 48px;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        top: -2px;
+        transform: translate(8px, 8px);
+        transition: transform .2s ease-out;
+        z-index: -1;
+      }
+      
+      .options-button:hover:after {
+        transform: translate(0, 0);
+      }
+      
+      .options-button:active {
+        background-color: #ffdeda;
+        outline: 0;
+      }
+      
+      .options-button:hover {
+        outline: 0;
+      }
 }
+
+
+@media (min-width: 800px) {
+    .options-button {
+      margin-top: 10px;
+      padding: 20px 40px;
+    }
+  }
+  
+
+@media (min-width: 300px ) and (max-width:700px) {
+    .quiz-container {
+        /* background-color: yellow; */
+        /* padding: 100px; */
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        max-width: 150px;
+        max-height: 400px;
+        margin: 0 auto;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-50%, -50%);
+    
+    }
+
+.Welcome-label {
+    font-size: 20px;
+}
+
+#options-container {
+    display: flex;
+    flex-direction: row; 
+    height: 10px;
+    padding: 50px 100px 100px 100px;
+    width:120px;
+    flex-direction: row;
+ 
+
+}
+  }

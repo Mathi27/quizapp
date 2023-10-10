@@ -628,7 +628,8 @@ const questions = [
     
     // We Can Add more questions here ... 
 ];
-//shuffle the question pattern
+ 
+ //shuffle the question pattern
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -641,11 +642,15 @@ let score = 0;
 let timer;
 let userName = null; // Initialize userName as null
 let hasClickedStartButton = false;
+let userInteracted = false; 
+
 //clear cache 
 function clearUserNameFromLocalStorage(){
     localStorage.removeItem("userName");
     userName = null;
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementById("start-screen");
@@ -655,7 +660,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const timerDisplay = document.getElementById("timer");
     const resultDisplay = document.getElementById("result");
     const optionsContainer = document.getElementById("options-container");
+    const buttonClickSound = document.getElementById("buttonClickSound");
+    const timerCompletionSound = document.getElementById("bellSound");
+    const restartButton = document.getElementById("restart-button");
+    document.addEventListener("click", () => {
+        userInteracted = true;
+    });
+     restartButton.addEventListener("click",()=>{
+        localStorage.removeItem("userName");
+        userName = null;
 
+        currentQuestion = 0;
+        score = 0;
+        location.reload();          
+    });
+
+    startButton.addEventListener("click", () => {
+        buttonClickSound.play();
+        
+    });
+    
+     
+   
+
+    function stopAudio() {
+        timerCompletionSound.pause();
+        timerCompletionSound.currentTime = 0;
+    }
+    if(timerCompletionSound){
+        timerCompletionSound.addEventListener("ended", stopAudio);
+    }
+
+    
     // Check if the user's name is already in localStorage
     const storedUserName = localStorage.getItem("userName");
     if (storedUserName) {
@@ -668,6 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     startButton.addEventListener("click", () => {
+        buttonClickSound.play(); 
         if (!hasClickedStartButton) {
             userName = prompt("Enter your Name");
             if (!userName) {
@@ -713,7 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const optionButton = document.createElement("button");
                 optionButton.textContent = option;
                 optionButton.classList.add("options-button");
-                optionButton.addEventListener("click", () => checkAnswer(option));
+                optionButton.addEventListener("click", () => checkAnswer(option,questionData.answer));
                 optionsContainer.appendChild(optionButton);
             });
         } else {
@@ -722,6 +759,10 @@ document.addEventListener("DOMContentLoaded", () => {
             resultDisplay.style.display = "block";
             questionContainer.innerHTML = "Quiz completed!";
             resultDisplay.innerHTML = `Congratulations, ${userName}! Your score: ${currentQuestion} / ${questions.length}`;
+
+            
+
+
             // need to send this data to node.js server if i want.
         }
     }
@@ -732,10 +773,16 @@ document.addEventListener("DOMContentLoaded", () => {
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
             resultDisplay.innerHTML = `Time's up, ${userName}! Your score: ${currentQuestion} `;
+            // Completion Sound;
+            if(userInteracted){
+                timerCompletionSound.play();
+
+            }
             if(currentQuestion > 30){
                 resultDisplay.innerHTML += `You are eligible for a Crackers!🧨`;
 
             }
+            restartButton.style.display = "block";
             // also send this data to node js server.
         } else {
             timeLeft--;
@@ -743,12 +790,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function checkAnswer(selectedOption,correctAnswer) {
+    function checkAnswer(selectedOption) {
+        // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
+        const correctAnswer = questions[currentQuestion].answer;
+        buttonClickSound.play();
+
         if(selectedOption === correctAnswer){
             score++;
+            console.log(`Score updated: ${score}`);
         }
+
         currentQuestion++;
         displayQuestion();
+
+        //Update the score display on Menu
+        const scoreDisplay = document.getElementById("score-display");
+        scoreDisplay.textContent = `Score: ${score}`;
       
     }
 
