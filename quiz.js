@@ -772,13 +772,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (timeLeft <= 0) {
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
-            resultDisplay.innerHTML = `Time's up, ${userName}! Your score: ${currentQuestion} `;
+            resultDisplay.innerHTML = `Time's up, ${userName}! Your score: ${score} `;
             // Completion Sound;
             if(userInteracted){
                 timerCompletionSound.play();
 
             }
-            if(currentQuestion > 30){
+            if(score > 30){
                 resultDisplay.innerHTML += `You are eligible for a Crackers!🧨`;
 
             }
