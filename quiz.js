@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", () => {
         userInteracted = true;
     });
+
      restartButton.addEventListener("click",()=>{
         localStorage.removeItem("userName");
         userName = null;
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedUserName = localStorage.getItem("userName");
     if (storedUserName) {
         userName = storedUserName;
-        hasClickedStartButton = true; // Set the flag to true
+        hasClickedStartButton = true; // made the flag set true.
         startScreen.style.display = "none";
         quizScreen.style.display = "block";
         document.getElementById("user-name").textContent = userName;
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("பெயர் | Please Enter Your Name :");
                 return;
             }
-            hasClickedStartButton = true; // Set the flag to true
+            hasClickedStartButton = true; //  made this flag to true
           
             localStorage.setItem("userName", userName);
             setTimeout( ()=>{
@@ -103,11 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startQuiz() {
         shuffleArray(questions);
-        // userName = prompt("Enter Your Name :");
-        // if(!userName){
-        //     alert("Please Enter your name");
-        //     return;
-        // }
+        
         document.getElementById("user-name").textContent = userName;
         displayQuestion();
         timer = setInterval(updateTimer, 1000);
@@ -132,9 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
             resultDisplay.style.display = "block";
             questionContainer.innerHTML = "Quiz completed!";
             resultDisplay.innerHTML = `Congratulations, ${userName}! Your score: ${currentQuestion} / ${questions.length}`;
-
-            
-
 
             // need to send this data to node.js server if i want.
         }
@@ -176,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentQuestion++;
         displayQuestion();
 
-        //Update the score display on Menu
+        //Update the score display on Menu :
         const scoreDisplay = document.getElementById("score-display");
         scoreDisplay.textContent = `Score: ${score}`;
       
