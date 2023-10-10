@@ -717,7 +717,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 clearUserNameFromLocalStorage();
                 alert("User Name cleared from Cache !");
                 console.log("Cache cleared.");
-            },62000); //60 seconds
+                console.log("65 seconds cleared");
+            },65000); //65 seconds
         }
         startScreen.style.display = "none";
         quizScreen.style.display = "block";
