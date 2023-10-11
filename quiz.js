@@ -21,7 +21,16 @@ let wrongAnswers = 0;
 let difference = 0;
 
 
-
+function clearLocalStorage() {
+    const id  = localStorage.getItem("game-id")
+    postData("http://54.161.94.244:8080/game_score",{
+       id,
+       score
+    }).then().catch(console.log)
+    localStorage.removeItem("userName");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("game-id")
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementById("start-screen");
@@ -49,15 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Function to clear the local storage 
-function clearLocalStorage() {
-    localStorage.removeItem("userName");
-    localStorage.removeItem("phoneNumber");
-}
+
+
 
 
 
     // Data collection:
-    collectDataButton.addEventListener("click", () => {
+    collectDataButton.addEventListener("click",async () => {
         userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
 
@@ -85,7 +92,13 @@ function clearLocalStorage() {
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
-
+        const response = await axios.post("http://54.161.94.244:8080/user",{
+            "name":userName,
+            "phone_number":phoneNumber
+        }
+        )
+        console.log(response)
+        localStorage.setItem("game-id",response.data.id)
         console.log("Starting QUIZ");
 
         startScreen.style.display = "none";
@@ -105,7 +118,6 @@ function clearLocalStorage() {
 
     restartButton.addEventListener("click", () => {
         clearLocalStorage();
-
         currentQuestion = 0;
         score = 0;
         location.reload();
@@ -258,8 +270,26 @@ function clearLocalStorage() {
             questionContainer.innerHTML = "Quiz completed!";
 
             resultDisplay.innerHTML = `Congratulations,Your score: ${difference}`;
-
+    
             // need to send this data to node.js server if i want.
         }
     }
 });
+
+
+async function postData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      // *default, no-cache, reload, force-cache, only-if-cached
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      
+     // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+    console.log(response)
+    return JSON.parse(response); // parses JSON response into native JavaScript objects
+  }
