@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const questionContainer = document.getElementById("question-container");
     const timerDisplay = document.getElementById("timer");
     const resultDisplay = document.getElementById("result");
+    const gameUiDisplay = document.getElementById("game-logic")
+    const playerInfo = document.getElementById("info");
     const optionsContainer = document.getElementById("options-container");
     const buttonClickSound = document.getElementById("buttonClickSound");
     const timerCompletionSound = document.getElementById("quizOver");
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userNameInput = document.getElementById("user-name-input");
     const phoneNumberInput = document.getElementById("phone-number-input");
     const inputContainer = document.getElementById("input-container");
+   
 
 
 // Function to clear the local storage 
@@ -194,15 +197,20 @@ function clearLocalStorage() {
         if (timeLeft <= 0) {
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
-            resultDisplay.innerHTML = `Time's up, ${userName}! Your score: ${score} `;
+            playerInfo.innerHTML = `Time's up, ${userName} !`;
+            resultDisplay.innerHTML = `Your score: ${score} `;
             // Completion Sound;
             if (userInteracted && !hasPlayedCompletionSound) {
                 timerCompletionSound.play();
                 hasPlayedCompletionSound = true;
 
             }
+            // logic is kept as 30.
             if (score > 30) {
-                resultDisplay.innerHTML += `You are eligible for a Crackers!🧨`;
+                gameUiDisplay.innerHTML = `You are eligible for a Crackers!🧨`;
+ 
+            }else{
+                gameUiDisplay.innerHTML = `Try again`;
 
             }
             restartButton.style.display = "block";

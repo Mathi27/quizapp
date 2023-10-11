@@ -55,7 +55,28 @@ body {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
-
+ 
+#result{
+    /* background-color: #00ffd5; */
+    padding: 10px;
+    display: none;
+    width: 150px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: white ;
+}
+#info{
+    margin-top: 20px;
+    font-size: 18px;
+    color: black ;
+     
+}
+#game-logic{
+    margin-top: 20px;
+    font-size: 18px;
+    color: black ;
+     
+}
 .quiz-container {
     padding: 100px;
     border-radius: 10px;
@@ -167,11 +188,20 @@ button {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    ;
 
 }
 
 #restart-button {
     display: none;
+    color: black;
+    font-size: 18px;
+    background-color: rgb(110, 190, 255);
+    cursor: pointer;
+    box-shadow: 1px 1px 1px black;
+
+    
+    
 }
 
 .options-button {
