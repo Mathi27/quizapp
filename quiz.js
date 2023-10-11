@@ -133,6 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function startQuiz() {
+        // Remove Exsisting Local Storage sessions.
+        localStorage.removeItem("userName");
+        localStorage.removeItem("phoneNumber");
+        console.log("Exsisting sessions are removed.")
         shuffleArray(questions);
         
         document.getElementById("user-name").textContent = userName;
