@@ -22,21 +22,26 @@ body {
     padding: 10px;
     border-radius: 10px;
 }
-.privacy-policy{
+
+.privacy-policy {
     position: fixed;
     bottom: 0;
     left: 50%;
     font-size: 12px;
-    transform: translateX(-50%);    
+    transform: translateX(-50%);
 }
-.privacy-policy:hover{
-      color: white;
-    
+
+.privacy-policy:hover {
+    color: white;
+
 }
+
 .privacy-policy:active {
-    color: white; /* Color to change to when active */
+    color: white;
+    /* Color to change to when active */
 }
-.privacy-policy:visited{
+
+.privacy-policy:visited {
     color: wheat;
 }
 
@@ -55,28 +60,31 @@ body {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
- 
-#result{
+
+#result {
     /* background-color: #00ffd5; */
     padding: 10px;
     display: none;
     width: 150px;
     border-radius: 10px;
     font-weight: bold;
-    background-color: white ;
+    background-color: white;
 }
-#info{
+
+#info {
     margin-top: 20px;
     font-size: 18px;
-    color: black ;
-     
+    color: black;
+
 }
-#game-logic{
+
+#game-logic {
     margin-top: 20px;
     font-size: 18px;
-    color: black ;
-     
+    color: black;
+
 }
+
 .quiz-container {
     padding: 100px;
     border-radius: 10px;
@@ -113,6 +121,7 @@ h1 {
     font-family: 'Dela Gothic One', cursive;
 
 }
+
 
 button {
     background-color: #007BFF;
@@ -188,8 +197,28 @@ button {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    ;
 
+
+}
+.mark-container{
+     /* background-color: white; */
+     padding: 15px;
+     font-size: 16px;
+     border-radius: 12px;
+     margin-top: 10px;
+     font-size: 18px;
+     /* display: flex; */
+}
+#ans-diff {
+    display: flex;
+}
+
+#userCorrect {
+    display: block;
+}
+
+#userWrong {
+    display: block;
 }
 
 #restart-button {
@@ -200,8 +229,8 @@ button {
     cursor: pointer;
     box-shadow: 1px 1px 1px black;
 
-    
-    
+
+
 }
 
 .options-button {
@@ -287,10 +316,12 @@ button {
 .options-button:hover {
     outline: 0;
 }
-.footer-container{
+
+.footer-container {
     color: wheat;
     font-size: 10px;
 }
+
 .quiz-container {
     z-index: 1;
 }
@@ -355,11 +386,12 @@ button {
 
 }
 
-.play-btn{
+.play-btn {
     background-color: white;
     /* border: #111 10px; */
     border-style: solid;
 }
+
 @media (min-width: 800px) {
     .options-button {
         margin-top: 10px;
@@ -370,7 +402,7 @@ button {
 
 @media (min-width: 300px) and (max-width:700px) {
     .quiz-container {
-      
+
         border-radius: 10px;
         background-color: rgb(255, 255, 255);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -438,10 +470,10 @@ button {
         font-size: 16px;
     }
 
-    .play-btn{
+    .play-btn {
         background-color: white;
         border-radius: 20px;
-        
+
         font-size: 16px;
         font-weight: 700;
     }

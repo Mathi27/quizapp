@@ -16,6 +16,10 @@ let hasClickedStartButton = false;
 let userInteracted = false;
 let hasPlayedCompletionSound = false;  
 
+let correctAnswers = 0;
+let wrongAnswers = 0;
+let difference = 0;
+
 
 
 
@@ -34,11 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const kovilMani = document.getElementById("kovil-mani");
     const wrongOptionSelected = document.getElementById("worngOption");
     const restartButton = document.getElementById("restart-button");
+    const markContainer = document.getElementById("mark-container");
     const collectDataButton = document.getElementById("collect-data-button")
     const userNameInput = document.getElementById("user-name-input");
     const phoneNumberInput = document.getElementById("phone-number-input");
     const inputContainer = document.getElementById("input-container");
-   
+//    answer
+    const userAttemptCorrectAnswer = document.getElementById("userCorrect");
+    const userAttemptWrongAnswer = document.getElementById("userWrong");
 
 
 // Function to clear the local storage 
@@ -52,7 +59,7 @@ function clearLocalStorage() {
     // Data collection:
     collectDataButton.addEventListener("click", () => {
         userName = userNameInput.value;
-        const phoneNumber = phoneNumberInput.value.trim();
+       const phoneNumber = phoneNumberInput.value.trim();
 
         if (!userName || !phoneNumber) {
             alert("Please Enter both Name and Phone Number");
@@ -152,11 +159,85 @@ function clearLocalStorage() {
     function startQuiz() {    
         shuffleArray(questions);
         document.getElementById("user-name").textContent = userName;
+         
         console.log(` --------------${userName}------------`);
+        
         displayQuestion();
         timer = setInterval(updateTimer, 1000);
     }
 
+   
+   
+    function playSound(isCorrect){
+        const correctSound = new Audio('./audio/hindu-bell1.mp3');
+        const wrongSound = new Audio('./audio/wrongOption.mp3');
+
+        if(isCorrect){
+            correctSound.play();
+        }else{
+            wrongSound.play();
+        }
+    }
+
+
+    function checkAnswer(selectedOption) {
+        // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
+        const correctAnswer = questions[currentQuestion].answer;
+        // buttonClickSound.play();
+
+        if (selectedOption === correctAnswer) {
+            correctAnswers++;
+            score++;
+            playSound(true);
+            console.log(`Score updated: ${score}`);
+        }else{
+            playSound(false);
+            wrongAnswers++;
+
+        }
+
+        currentQuestion++;
+        displayQuestion();
+
+        //Update the score display on Menu :
+        const scoreDisplay = document.getElementById("score-display");
+        scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    function updateTimer() {
+        let timeLeft = parseInt(timerDisplay.textContent);
+        if (timeLeft <= 0) {
+            questionContainer.style.display = "none";
+            resultDisplay.style.display = "block";
+            playerInfo.innerHTML = `Time's up, ${userName} !`;
+            resultDisplay.innerHTML = `Your score: ${score} `;
+            // Completion Sound;
+            if (userInteracted && !hasPlayedCompletionSound) {
+                timerCompletionSound.play();
+                hasPlayedCompletionSound = true;
+
+            }
+             
+             const difference = correctAnswers - wrongAnswers;
+            
+             userAttemptCorrectAnswer.innerHTML =  `Correct Attempt: ${correctAnswers}`
+             userAttemptWrongAnswer.innerHTML = ` Wrong Attempt: ${wrongAnswers}`;
+            // logic is kept as 30.
+            if (difference > 30) {
+                gameUiDisplay.innerHTML = `You are eligible for a Crackers!🧨`;
+ 
+            }else{
+                gameUiDisplay.innerHTML = `Try again`;
+
+            }
+            restartButton.style.display = "block";
+            // also send this data to node js server.
+        } else {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft;
+        }
+    }
+    
     function displayQuestion() {
         if (currentQuestion < questions.length) {
             const questionData = questions[currentQuestion];
@@ -175,74 +256,10 @@ function clearLocalStorage() {
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
             questionContainer.innerHTML = "Quiz completed!";
-            resultDisplay.innerHTML = `Congratulations, ${userName}! Your score: ${currentQuestion} / ${questions.length}`;
+
+            resultDisplay.innerHTML = `Congratulations,Your score: ${difference}`;
 
             // need to send this data to node.js server if i want.
         }
     }
-   
-    function playSound(isCorrect){
-        const correctSound = new Audio('./audio/hindu-bell1.mp3');
-        const wrongSound = new Audio('./audio/wrongOption.mp3');
-
-        if(isCorrect){
-            correctSound.play();
-        }else{
-            wrongSound.play();
-        }
-    }
-
-    function updateTimer() {
-        let timeLeft = parseInt(timerDisplay.textContent);
-        if (timeLeft <= 0) {
-            questionContainer.style.display = "none";
-            resultDisplay.style.display = "block";
-            playerInfo.innerHTML = `Time's up, ${userName} !`;
-            resultDisplay.innerHTML = `Your score: ${score} `;
-            // Completion Sound;
-            if (userInteracted && !hasPlayedCompletionSound) {
-                timerCompletionSound.play();
-                hasPlayedCompletionSound = true;
-
-            }
-            // logic is kept as 30.
-            if (score > 30) {
-                gameUiDisplay.innerHTML = `You are eligible for a Crackers!🧨`;
- 
-            }else{
-                gameUiDisplay.innerHTML = `Try again`;
-
-            }
-            restartButton.style.display = "block";
-            // also send this data to node js server.
-        } else {
-            timeLeft--;
-            timerDisplay.textContent = timeLeft;
-        }
-    }
-
-    function checkAnswer(selectedOption) {
-        // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
-        const correctAnswer = questions[currentQuestion].answer;
-        // buttonClickSound.play();
-
-        if (selectedOption === correctAnswer) {
-            score++;
-            playSound(true);
-            console.log(`Score updated: ${score}`);
-        }else{
-            playSound(false);
-
-        }
-
-        currentQuestion++;
-        displayQuestion();
-
-        //Update the score display on Menu :
-        const scoreDisplay = document.getElementById("score-display");
-        scoreDisplay.textContent = `Score: ${score}`;
-
-    }
-
-    
 });
