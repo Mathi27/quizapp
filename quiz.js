@@ -1,5 +1,5 @@
 import questions from './question.js';
-
+// github code
 //shuffle the question pattern
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -21,16 +21,8 @@ let wrongAnswers = 0;
 let difference = 0;
 
 
-function clearLocalStorage() {
-    const id  = localStorage.getItem("game-id")
-    postData("http://54.161.94.244:8080/game_score",{
-       id,
-       score
-    }).then().catch(console.log)
-    localStorage.removeItem("userName");
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("game-id")
-}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementById("start-screen");
@@ -58,14 +50,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Function to clear the local storage 
+function clearLocalStorage() {
+    console.log("-----working-------");
+    const id  = Number(localStorage.getItem("game-id"));
+    postData("http://54.161.94.244:8080/game_score",{
+       id,
+       score
+    }).then(() => {
+    // LOGIC : If the API call is successfull , we can remove the data from local storage.
+        localStorage.removeItem("userName");
+        localStorage.removeItem("phoneNumber");
+        localStorage.removeItem("game-id");
+        correctAnswers = 0;
+        wrongAnswers = 0;
+        difference = 0;
 
+        // startQuiz();
+    }).catch(error =>{
+        console.log("API Call Failed :",error);
+    });
+   
+}    
+
+function startQuiz() {    
+    shuffleArray(questions);
+    document.getElementById("user-name").textContent = userName;
+     
+    console.log(` --------------${userName}------------`);
+    
+    displayQuestion();
+    timer = setInterval(updateTimer, 1000);
+}
 
 
 
 
     // Data collection:
     collectDataButton.addEventListener("click",async () => {
-        userName = userNameInput.value;
+         userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
 
         if (!userName || !phoneNumber) {
@@ -88,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
@@ -120,8 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
         clearLocalStorage();
         currentQuestion = 0;
         score = 0;
-        location.reload();
-        // startQuiz();
+        // location.reload();
+        startQuiz();
 
     });
 
@@ -167,16 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-
-    function startQuiz() {    
-        shuffleArray(questions);
-        document.getElementById("user-name").textContent = userName;
-         
-        console.log(` --------------${userName}------------`);
-        
-        displayQuestion();
-        timer = setInterval(updateTimer, 1000);
-    }
 
    
    
@@ -275,7 +286,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-
+function clearLocalStorage() {
+    const id  = localStorage.getItem("game-id")
+    postData("http://54.161.94.244:8080/game_score",{
+       id,
+       score
+    }).then().catch(console.log)
+    localStorage.removeItem("userName");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("game-id")
+}
 
 async function postData(url = "", data = {}) {
     // Default options are marked with *
@@ -290,6 +310,12 @@ async function postData(url = "", data = {}) {
      // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
-    console.log(response)
-    return JSON.parse(response); // parses JSON response into native JavaScript objects
+    if(response.ok){
+        return response.json();
+    }
+    else{
+        throw new Error(`Api call failed with Status : ${response.status}`)
+    }
+    // console.log(response)
+    // return JSON.parse(response); // parses JSON response into native JavaScript objects
   }

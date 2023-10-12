@@ -1,0 +1,23 @@
+{
+  "name": "puzzles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathi27/quizapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mathi27/quizapp/issues"
+  },
+  "homepage": "https://github.com/Mathi27/quizapp#readme",
+  "dependencies": {
+    "axios": "^1.5.1"
+  }
+}
