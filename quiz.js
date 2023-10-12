@@ -22,11 +22,9 @@ let difference = 0;
 
 
 function clearLocalStorage() {
-    const id  = localStorage.getItem("game-id")
-    postData("http://54.161.94.244:8080/game_score",{
-       id,
-       score
-    }).then().catch(console.log)
+    console.log(score)
+    
+   
     localStorage.removeItem("userName");
     localStorage.removeItem("phoneNumber");
     localStorage.removeItem("game-id")
@@ -64,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Data collection:
-    collectDataButton.addEventListener("click",async () => {
+    collectDataButton.addEventListener("click",() => {
         userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
 
@@ -92,13 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
-        const response = await axios.post("http://54.161.94.244:8080/user",{
+        axios.post("http://54.161.94.244:8080/user",{
             "name":userName,
             "phone_number":phoneNumber
-        }
-        )
-        console.log(response)
-        localStorage.setItem("game-id",response.data.id)
+        }).then(res => res.data.data).then(
+            data=> localStorage.setItem("game-id",data.id)
+        ).catch(console.log)
+       
+       
         console.log("Starting QUIZ");
 
         startScreen.style.display = "none";
@@ -116,13 +115,19 @@ document.addEventListener("DOMContentLoaded", () => {
         userInteracted = true;
     });
 
-    restartButton.addEventListener("click", () => {
-        clearLocalStorage();
-        currentQuestion = 0;
+    restartButton.addEventListener("click", async () => {
+       
+        const id  = localStorage.getItem("game-id")
+       await axios.post("http://54.161.94.244:8080/game_score",{
+            "id":Number(id),
+            "score":Number(score)
+         })
         score = 0;
+        currentQuestion = 0;
+        // clearLocalStorage();
         location.reload();
-        // startQuiz();
-
+        startQuiz();
+       
     });
 
 
