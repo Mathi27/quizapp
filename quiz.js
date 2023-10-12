@@ -1,5 +1,5 @@
 import questions from './question.js';
-// github code
+
 //shuffle the question pattern
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -21,8 +21,12 @@ let wrongAnswers = 0;
 let difference = 0;
 
 
-
-
+function clearLocalStorage() {
+   
+    localStorage.removeItem("userName");
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("game-id")
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementById("start-screen");
@@ -50,44 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Function to clear the local storage 
-function clearLocalStorage() {
-    console.log("-----working-------");
-    const id  = Number(localStorage.getItem("game-id"));
-    postData("http://54.161.94.244:8080/game_score",{
-       id,
-       score
-    }).then(() => {
-    // LOGIC : If the API call is successfull , we can remove the data from local storage.
-        localStorage.removeItem("userName");
-        localStorage.removeItem("phoneNumber");
-        localStorage.removeItem("game-id");
-        correctAnswers = 0;
-        wrongAnswers = 0;
-        difference = 0;
 
-        // startQuiz();
-    }).catch(error =>{
-        console.log("API Call Failed :",error);
-    });
-   
-}    
-
-function startQuiz() {    
-    shuffleArray(questions);
-    document.getElementById("user-name").textContent = userName;
-     
-    console.log(` --------------${userName}------------`);
-    
-    displayQuestion();
-    timer = setInterval(updateTimer, 1000);
-}
 
 
 
 
     // Data collection:
-    collectDataButton.addEventListener("click",async () => {
-         userName = userNameInput.value;
+    collectDataButton.addEventListener("click", () => {
+        userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
 
         if (!userName || !phoneNumber) {
@@ -110,17 +84,17 @@ function startQuiz() {
             return;
         }
         
+
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
-         
-        const response = await axios.post("http://54.161.94.244:8080/user",{
+        axios.post("http://54.161.94.244:8080/user",{
             "name":userName,
             "phone_number":phoneNumber
         }
-        )
-        console.log(response)
-        localStorage.setItem("game-id",response.data.data.id)
+        ).then(res=>res.data.data).then(data=> localStorage.setItem("game-id",data.id))
+       
+        
         console.log("Starting QUIZ");
 
         startScreen.style.display = "none";
@@ -134,17 +108,23 @@ function startQuiz() {
     });
 
 
-    document.addEventListener("click", () => {
+    document.addEventListener("click", async () => {
         userInteracted = true;
     });
 
-    restartButton.addEventListener("click", () => {
-        clearLocalStorage();
+    restartButton.addEventListener("click", async () => {
+        restartButton.disabled = true
+        const id  = localStorage.getItem("game-id") 
+        await axios.post("http://54.161.94.244:8080/game_score",{
+            id:Number(id),
+            score:Number(score)
+        })
+        clearLocalStorage()
         currentQuestion = 0;
         score = 0;
-        // location.reload();
+        location.reload();
         startQuiz();
-
+        restartButton.disabled = false
     });
 
 
@@ -189,6 +169,16 @@ function startQuiz() {
 
     });
 
+
+    function startQuiz() {    
+        shuffleArray(questions);
+        document.getElementById("user-name").textContent = userName;
+         
+        console.log(` --------------${userName}------------`);
+        
+        displayQuestion();
+        timer = setInterval(updateTimer, 1000);
+    }
 
    
    
@@ -288,26 +278,3 @@ function startQuiz() {
     }
 });
 
-
-async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      // *default, no-cache, reload, force-cache, only-if-cached
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      
-     // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
-    if(response.ok){
-        return response.json();
-    }
-    else{
-        throw new Error(`Api call failed with Status : ${response.status}`)
-    }
-    // console.log(response)
-    // return JSON.parse(response); // parses JSON response into native JavaScript objects
-  }
