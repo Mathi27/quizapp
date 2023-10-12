@@ -4,8 +4,8 @@ import random
 questions = []
 # Generate 50 multiplication questions
 for _ in range(500):
-    num1 = random.randint(1, 100)
-    num2 = random.randint(1, 100)
+    num1 = random.randint(2, 12)
+    num2 = random.randint(3, 12)
     answer = num1 * num2
     question = f"{num1} x {num2} = ?"
     options = [str(answer), str(random.randint(1, 100)), str(random.randint(1, 100)), str(random.randint(1, 100))]
