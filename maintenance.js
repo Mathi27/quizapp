@@ -1,7 +1,4 @@
-/*the complete project is in the following link:
-https://github.com/vkive/comming-sooon.git
-Follow me on Codepen
-*/    
+ 
 var countDownDate = new Date("Jan 24, 2022 00:00:00").getTime();
             var x= setInterval(function(){
                 var now = new Date().getTime();
@@ -21,7 +18,7 @@ var countDownDate = new Date("Jan 24, 2022 00:00:00").getTime();
                     clearInterval(x);
                     document.getElementById("days").innerHTML = "0";
                     document.getElementById("hours").innerHTML = "8";
-                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "";
                     document.getElementById("seconds").innerHTML = "00";
                     
                 }

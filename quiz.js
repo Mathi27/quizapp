@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
             restartButton.style.display = "block";
-            // also send this data to node js server.
+          
         } else {
             timeLeft--;
             timerDisplay.textContent = timeLeft;
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             resultDisplay.innerHTML = `Congratulations,Your score: ${difference}`;
     
-            // need to send this data to node.js server if i want.
+           
         }
     }
 });
