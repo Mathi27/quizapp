@@ -21,8 +21,7 @@ let wrongAnswers = 0;
 let difference = 0;
 
 
-function clearLocalStorage() {
-   
+function clearLocalStorage() { 
     localStorage.removeItem("userName");
     localStorage.removeItem("phoneNumber");
     localStorage.removeItem("game-id")
