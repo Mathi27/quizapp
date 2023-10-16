@@ -345,7 +345,8 @@ button {
     .options-button {
         display: block;
         font-size: 16px;
-
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight:bold;
         background-color: #ffdeda;
         color: black;
         border: black;
@@ -401,6 +402,17 @@ button {
 
 
 @media (min-width: 300px) and (max-width:700px) {
+    #score-display {
+        color: black;
+        display: flex;
+        margin-left: 20px;
+        font-size: 20px;
+        font-family: 'Dela Gothic One', cursive;
+        background-color: white;
+        width: max-content;
+        padding: 10px;
+        border-radius: 10px;
+    }
     .quiz-container {
 
         border-radius: 10px;
@@ -427,7 +439,13 @@ button {
     .Welcome-label {
         font-size: 20px;
     }
-
+   
+    #question{
+        background-color: #000000;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+/* 
     #options-container {
         display: flex;
         flex-direction: row;
@@ -437,8 +455,55 @@ button {
         flex-direction: row;
 
 
+    } */
+    #options-container {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        /* background-color: #ff0000; */
+    }
+    .options-button {
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 35px;
+        background-color: #ffdeda;
+        color: black;
+        font-size: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        
+        border: 2px solid #111;
     }
 
+    .options-button:after {
+        background-color:transparent;
+        border-radius: 8px;
+        content: "";
+        display: block;
+        height: 48px;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        top: -2px;
+        transform: translate(8px, 8px);
+        transition: transform .2s ease-out;
+        z-index: -1;
+    }
+    
+    .options-button:hover:after {
+        transform: translate(0, 0);
+    }
+    
+    .options-button:active {
+        background-color: #ffdeda;
+        outline: 0;
+    }
+    
+    .options-button:hover {
+        outline: 0;
+    }
     .start-title {
         font-size: 30px;
     }
@@ -479,6 +544,15 @@ button {
     }
 }
 
+#timer {
+    font-size: 24px;
+    margin-top: 10px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
 #input-container {
     padding: 20px;
     /* background-color: wheat; */
@@ -514,6 +588,9 @@ button {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+}
+#connection-message{
+    background-color: rebeccapurple;
 }
 
 #start-button:before {

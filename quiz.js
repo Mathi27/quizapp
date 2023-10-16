@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
 //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
     const userAttemptWrongAnswer = document.getElementById("userWrong");
+    // score update info (toast msg)
+    const scoreUpdateMessage = document.getElementById("score-update-message");
+    const connectionMessage = document.getElementById("connection-message");
 
 
 // Function to clear the local storage 
@@ -83,28 +86,33 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-
+        collectDataButton.textContent  = "Loading..";
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
+       
+       
         axios.post("http://54.161.94.244:8080/user",{
             "name":userName,
             "phone_number":phoneNumber
         }
-        ).then(res=>res.data.data).then(data=> localStorage.setItem("game-id",data.id))
-       
-        
-        console.log("Starting QUIZ");
+        ).then(res=>res.data.data).then(data=>  {
+            localStorage.setItem("game-id",data.id);
 
-        startScreen.style.display = "none";
-        quizScreen.style.display = "block";
+            connectionMessage.textContent ="";
+            console.log("Starting QUIZ");
+            startScreen.style.display = "none";
+            quizScreen.style.display = "block";
+    
+            startQuiz();
+            // to display this in screen (welcome, [UserName])
+            document.getElementById("user-name").textContent = userName;
+    }).catch(error =>{
+        connectionMessage.textContent = "Failed to connect to the server.Try again"
+        console.log(error);
 
-        startQuiz();
-        // to display this in screen (welcome, [UserName])
-        document.getElementById("user-name").textContent = userName;
- 
-
-    });
+        });
+     });
 
 
     document.addEventListener("click", async () => {
@@ -114,10 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
     restartButton.addEventListener("click", async () => {
         restartButton.disabled = true
         const id  = localStorage.getItem("game-id") 
+        
+        scoreUpdateMessage.textContent = "Updating your score to the server ..."
+        try{
         await axios.post("http://54.161.94.244:8080/game_score",{
             id:Number(id),
             score:Number(score)
-        })
+        });
+        scoreUpdateMessage.textContent = "Score updated successfully!";
+    }catch(error){
+        scoreUpdateMessage.textContent = "Score update failed. Please try again later.";
+
+    }
+
         clearLocalStorage()
         currentQuestion = 0;
         score = 0;
