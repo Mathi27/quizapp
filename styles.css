@@ -589,9 +589,7 @@ button {
     -webkit-user-select: none;
     touch-action: manipulation;
 }
-#connection-message{
-    background-color: rebeccapurple;
-}
+ 
 
 #start-button:before {
     content: "";
