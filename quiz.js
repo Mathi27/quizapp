@@ -1,12 +1,4 @@
-import questions from './question.js';
-
-//shuffle the question pattern
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+import getRandomQuestion from './randomQuestions.js';
 
 let currentQuestion = 0;
 let score = 0;
@@ -269,28 +261,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function displayQuestion() {
-        if (currentQuestion < questions.length) {
-            const questionData = questions[currentQuestion];
-            document.getElementById("question").textContent = questionData.question;
-            optionsContainer.innerHTML = "";
 
-            questionData.options.forEach((option) => {
-                const optionButton = document.createElement("button");
-                optionButton.textContent = option;
-                optionButton.classList.add("options-button");
-                optionButton.addEventListener("click", () => checkAnswer(option, questionData.answer));
-                optionsContainer.appendChild(optionButton);
-            });
-        } else {
-            clearInterval(timer);
-            questionContainer.style.display = "none";
-            resultDisplay.style.display = "block";
-            questionContainer.innerHTML = "Quiz completed!";
+        const questionData = getRandomQuestion();
+        document.getElementById("question").textContent = questionData.question;
+        optionsContainer.innerHTML = "";
 
-            resultDisplay.innerHTML = `Congratulations,Your score: ${difference}`;
-    
-           
-        }
+        questionData.options.forEach((option) => {
+            const optionButton = document.createElement("button");
+            optionButton.textContent = option;
+            optionButton.classList.add("options-button");
+            optionButton.addEventListener("click", () => checkAnswer(option, questionData.answer));
+            optionsContainer.appendChild(optionButton);
+        });
+
     }
 });
 

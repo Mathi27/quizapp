@@ -33,7 +33,7 @@ function getRandomItem(arr) {
     return arr[i+2][j+2];
 }
 
-function getRandomQuestion() {
+export function getRandomQuestion() {
     let i, j, question;
     // Starting from 2, to avoid 0s and 1s
     i = getRandomInt(2, tableOrder);
