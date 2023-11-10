@@ -1,4 +1,5 @@
 import questions from './question.js';
+ 
 
 //shuffle the question pattern
 function shuffleArray(array) {
@@ -24,7 +25,7 @@ let difference = 0;
 function clearLocalStorage() { 
     localStorage.removeItem("userName");
     localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("game-id")
+    localStorage.removeItem("game-id");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -90,9 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // store user name and phone number in local storage.
         localStorage.setItem("userName", userName);
         localStorage.setItem("phoneNumber", phoneNumber);
+        
        
-       
-        axios.post("http://54.161.94.244:8080/user",{
+        axios.post("http://3.81.203.108:8080/user",{
             "name":userName,
             "phone_number":phoneNumber
         }
@@ -125,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         scoreUpdateMessage.textContent = "Updating your score to the server ..."
         try{
-        await axios.post("http://54.161.94.244:8080/game_score",{
+        await axios.post("http://3.81.203.108:8080/game_score",{
             id:Number(id),
             score:Number(score)
         });
@@ -188,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startQuiz() {    
         shuffleArray(questions);
+         
         document.getElementById("user-name").textContent = userName;
          
         console.log(` --------------${userName}------------`);
