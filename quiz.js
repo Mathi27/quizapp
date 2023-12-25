@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
              userAttemptWrongAnswer.innerHTML = ` Wrong Attempt: ${wrongAnswers}`;
             // logic is kept as 25
             if (difference > 25) {
-                gameUiDisplay.innerHTML = `You are eligible for a Crackers!🧨`;
+                gameUiDisplay.innerHTML = `Wow! You did amazing!`;
  
             }else{
                 gameUiDisplay.innerHTML = `Try again`;
