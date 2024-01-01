@@ -39,7 +39,6 @@
 
             <p class="start-title" style="display: block;">Math Puzzle</p>
             <button id="start-button" style="display: block;">Start</button>
-
             <div id="input-container" style="display: none;">
                 <div class="input-disp-container">
                 <label class="label-ui">User Name</label>
@@ -53,7 +52,15 @@
                     <input type="tel" id="phone-number-input"    placeholder="+91  ">
 
                  </div>
-
+                 <label class="label-ui">Select Level</label>
+                 <div>
+                     <select id="level-selector">
+                         <option value="0">Level 1</option>
+                         <option value="1">Level 2</option>
+                         <option value="2">Level 3</option>
+                         <!-- Add more levels as needed -->
+                     </select>
+                 </div>
                 <button id="collect-data-button" class="play-btn">Let's Play </button>
             </div>
             </div>
@@ -86,16 +93,18 @@
 
             
               <p id="score-update-message"></p>
-            <div class="center-btn">
+            <div class="center-btn" >
 
-                <button id="restart-button">Submit</button>
+                <button id="restart-button" style="display: none;">Main Menu</button>
 
 
             </div>
              <p id="connection-message"></p>
            
         </div>
-        <p class="privacy-policy" ><a target="_blank" href="./privacypolicy.html">Privacy Policy</a></p>
+        
+        <p class="privacy-policy" >Copyright © <a target="_blank" href="https://www.indusvalleychildren.org">The Children of Indus valley</a> 2023</p>
+        
     </div>
 
     <script type="module" src="quiz.js"></script>

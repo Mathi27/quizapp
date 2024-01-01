@@ -1,5 +1,5 @@
-import questions from './question.js';
- 
+import {questions} from './question.js';
+
 
 //shuffle the question pattern
 function shuffleArray(array) {
@@ -20,8 +20,10 @@ let hasPlayedCompletionSound = false;
 let correctAnswers = 0;
 let wrongAnswers = 0;
 let difference = 0;
-
-
+let currentLevel = 0;
+// Suppose the user selected Level 1 (value "0")
+let selectedLevel = "0";
+let selectedQuestions;
 function clearLocalStorage() { 
     localStorage.removeItem("userName");
     localStorage.removeItem("phoneNumber");
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userNameInput = document.getElementById("user-name-input");
     const phoneNumberInput = document.getElementById("phone-number-input");
     const inputContainer = document.getElementById("input-container");
-//    answer
+   //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
     const userAttemptWrongAnswer = document.getElementById("userWrong");
     // score update info (toast msg)
@@ -63,9 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Data collection:
-    collectDataButton.addEventListener("click", () => {
+    collectDataButton.addEventListener("click", () =>   {
         userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
+       selectedLevel = document.getElementById("level-selector").value;
+         selectedQuestions = questions(selectedLevel);
 
         if (!userName || !phoneNumber) {
             alert("Please Enter both Name and Phone Number");
@@ -86,33 +90,42 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Phone Number should contain exactly 10 numbers");
             return;
         }
-        
-        collectDataButton.textContent  = "Loading..";
-        // store user name and phone number in local storage.
-        localStorage.setItem("userName", userName);
-        localStorage.setItem("phoneNumber", phoneNumber);
+         setTimeout(() => {
+        const selectedLevel = document.getElementById("level-selector").value;
+        currentLevel = parseInt(selectedLevel); // Set the current level
+            
+        collectDataButton.textContent = "Submit";
+        // connectionMessage.textContent = "";
+        console.log("Starting QUIZ");
+        startScreen.style.display = "none";
+        quizScreen.style.display = "block";
+        startQuiz();
+        // to display this on the screen (welcome, [UserName])
+        document.getElementById("user-name").textContent = userName;
+    }, 1000);
+
         
        
-        axios.post("http://3.81.203.108:8080/user",{
-            "name":userName,
-            "phone_number":phoneNumber
-        }
-        ).then(res=>res.data.data).then(data=>  {
-            localStorage.setItem("game-id",data.id);
+    //     axios.post("http://3.81.203.108:8080/user",{
+    //         "name":userName,
+    //         "phone_number":phoneNumber
+    //     }
+    //     ).then(res=>res.data.data).then(data=>  {
+    //         localStorage.setItem("game-id",data.id);
 
-            connectionMessage.textContent ="";
-            console.log("Starting QUIZ");
-            startScreen.style.display = "none";
-            quizScreen.style.display = "block";
+    //         connectionMessage.textContent ="";
+    //         console.log("Starting QUIZ");
+    //         startScreen.style.display = "none";
+    //         quizScreen.style.display = "block";
     
-            startQuiz();
-            // to display this in screen (welcome, [UserName])
-            document.getElementById("user-name").textContent = userName;
-    }).catch(error =>{
-        connectionMessage.textContent = "Failed to connect to the server.Try again"
-        console.log(error);
+    //         startQuiz();
+    //         // to display this in screen (welcome, [UserName])
+    //         document.getElementById("user-name").textContent = userName;
+    // }).catch(error =>{
+    //     connectionMessage.textContent = "Failed to connect to the server.Try again"
+    //     console.log(error);
 
-        });
+    //     });
      });
 
 
@@ -125,16 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const id  = localStorage.getItem("game-id") 
         
         scoreUpdateMessage.textContent = "Updating your score to the server ..."
-        try{
-        await axios.post("http://3.81.203.108:8080/game_score",{
-            id:Number(id),
-            score:Number(score)
-        });
-        scoreUpdateMessage.textContent = "Score updated successfully!";
-    }catch(error){
-        scoreUpdateMessage.textContent = "Score update failed. Please try again later.";
+    //     try{
+    //     await axios.post("http://3.81.203.108:8080/game_score",{
+    //         id:Number(id),
+    //         score:Number(score)
+    //     });
+    //     scoreUpdateMessage.textContent = "Score updated successfully!";
+    // }catch(error){
+    //     scoreUpdateMessage.textContent = "Score update failed. Please try again later.";
 
-    }
+    // }
 
         clearLocalStorage()
         currentQuestion = 0;
@@ -186,9 +199,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-
+    function toggleDropdown() {
+        var dropdown = document.getElementById("myDropdown");
+        dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+    }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === "block") {
+                    openDropdown.style.display = "none";
+                }
+            }
+        }
+    }
     function startQuiz() {    
-        shuffleArray(questions);
+        shuffleArray(selectedQuestions);
          
         document.getElementById("user-name").textContent = userName;
          
@@ -214,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function checkAnswer(selectedOption) {
         // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
-        const correctAnswer = questions[currentQuestion].answer;
+        const correctAnswer = selectedQuestions[currentQuestion].answer;
         // buttonClickSound.play();
 
         if (selectedOption === correctAnswer) {
@@ -271,8 +300,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function displayQuestion() {
-        if (currentQuestion < questions.length) {
-            const questionData = questions[currentQuestion];
+        if (currentQuestion < selectedQuestions.length) {
+            const questionData = selectedQuestions[currentQuestion];
             document.getElementById("question").textContent = questionData.question;
             optionsContainer.innerHTML = "";
 
@@ -288,9 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
             questionContainer.innerHTML = "Quiz completed!";
-
             resultDisplay.innerHTML = `Congratulations,Your score: ${difference}`;
-    
+            restartButton.style.display = "block";
            
         }
     }
