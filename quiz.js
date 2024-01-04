@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userNameInput = document.getElementById("user-name-input");
     const phoneNumberInput = document.getElementById("phone-number-input");
     const inputContainer = document.getElementById("input-container");
+     
    //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
     const userAttemptWrongAnswer = document.getElementById("userWrong");
@@ -57,15 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreUpdateMessage = document.getElementById("score-update-message");
     const connectionMessage = document.getElementById("connection-message");
 
-
 // Function to clear the local storage 
-
 
 
 
 
     // Data collection:
     collectDataButton.addEventListener("click", () =>   {
+        
         userName = userNameInput.value;
        const phoneNumber = phoneNumberInput.value.trim();
        selectedLevel = document.getElementById("level-selector").value;
@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     restartButton.addEventListener("click", async () => {
         restartButton.disabled = true
+        hiringBanner.style.display = "block";
         const id  = localStorage.getItem("game-id") 
         
         scoreUpdateMessage.textContent = "Updating your score to the server ..."
@@ -184,13 +185,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // THis start button is initial page UI button.
     startButton.addEventListener("click", () => {
         buttonClickSound.play();
+        
+        const hiringBanner = document.getElementById("banner");
+        hiringBanner.style.display = "none";
+        
         if (!hasClickedStartButton) {
+
+            
             startButton.style.display = "none";
+            
 
-
+            
             //Enabling the Input
+            
             inputContainer.style.display = "none";
             inputContainer.style.display = "block";
+                    // Hide the hiringBanner
+                    
+
 
 
         }
