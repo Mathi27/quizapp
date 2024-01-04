@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userNameInput = document.getElementById("user-name-input");
     const phoneNumberInput = document.getElementById("phone-number-input");
     const inputContainer = document.getElementById("input-container");
+    const hiringBanner = document.getElementById("banner");
      
    //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
@@ -186,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", () => {
         buttonClickSound.play();
         
-        const hiringBanner = document.getElementById("banner");
+       
         hiringBanner.style.display = "none";
         
         if (!hasClickedStartButton) {
