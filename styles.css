@@ -10,7 +10,25 @@ body {
 
 
 }
+#hire-post {
+    color: green; /* Default color */
+    text-decoration: none; /* Remove underline */
+}
 
+/* Hover state */
+#hire-post:hover {
+    color: darkgreen; /* Color on hover */
+}
+
+/* Active state (when the link is clicked) */
+#hire-post:active {
+    color: forestgreen; /* Color when active */
+}
+
+/* Visited state */
+#hire-post:visited {
+    color: green; /* Color for visited links */
+}
 #score-display {
     color: black;
     display: flex;
@@ -78,7 +96,20 @@ body {
     color: black;
 
 }
-
+.top-banner {
+    background-color: rgb(0, 0, 0); /* Green background color */
+    color: white; /* White text color */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    
+    width: 96.5%;
+    z-index: 1000; /* Ensure the banner is on top of other elements */
+}
 #game-logic {
     margin-top: 20px;
     font-size: 18px;
@@ -350,7 +381,20 @@ button {
         justify-content: center;
 
     }
-
+    .top-banner {
+        background-color: rgb(0, 0, 0); /* Green background color */
+        color: white; /* White text color */
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        
+        width: 95.5%;
+        z-index: 1000; /* Ensure the banner is on top of other elements */
+    }
     .options-button {
         display: block;
         font-size: 16px;
@@ -421,6 +465,20 @@ button {
         width: max-content;
         padding: 10px;
         border-radius: 10px;
+    }
+    .top-banner {
+        background-color: rgb(0, 0, 0); /* Green background color */
+        color: white; /* White text color */
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        
+        width: 94.5%;
+        z-index: 1000; /* Ensure the banner is on top of other elements */
     }
     .quiz-container {
 
