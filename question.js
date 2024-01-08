@@ -5,7 +5,12 @@ import level13questions from "./QuestionBank/level13.js";
 import level14questions from "./QuestionBank/level14.js";
 import level15questions from "./QuestionBank/level15.js";
 import level16questions from "./QuestionBank/level16.js";
+import level17questions from "./QuestionBank/level17.js";
+import level18questions from "./QuestionBank/level18.js";
+import level19questions from "./QuestionBank/level19.js";
 import level2Questions from "./QuestionBank/level2.js";
+import level20questions from "./QuestionBank/level20.js";
+import level21questions from "./QuestionBank/level21.js";
 import level3Questions from "./QuestionBank/level3.js";
 import level4Questions from "./QuestionBank/level4.js";
 import level5questions from "./QuestionBank/level5.js";
@@ -49,6 +54,16 @@ export function questions(level){
       return level15questions;
     case "15":
       return level16questions;
+      case "16":
+        return level17questions;
+        case "17":
+          return level18questions;
+          case "18":
+            return level19questions;
+            case "19":
+              return level20questions;
+               
+                
                       
         
     default:
