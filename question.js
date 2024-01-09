@@ -62,7 +62,8 @@ export function questions(level){
             return level19questions;
             case "19":
               return level20questions;
-               
+               case "20":
+                return level21questions;
                 
                       
         
