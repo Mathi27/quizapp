@@ -8,7 +8,10 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+ 
+// TO shuffle the Question's option (Array Objects)
 
+ 
 let currentQuestion = 0;
 let score = 0;
 let timer;
@@ -24,6 +27,9 @@ let currentLevel = 0;
 // Suppose the user selected Level 1 (value "0")
 let selectedLevel = "0";
 let selectedQuestions;
+
+
+// clear locals
 function clearLocalStorage() { 
     localStorage.removeItem("userName");
     localStorage.removeItem("phoneNumber");
@@ -71,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
        const phoneNumber = phoneNumberInput.value.trim();
        selectedLevel = document.getElementById("level-selector").value;
          selectedQuestions = questions(selectedLevel);
+         
+        
 
         if (!userName || !phoneNumber) {
             alert("Please Enter both Name and Phone Number");
@@ -101,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startScreen.style.display = "none";
         quizScreen.style.display = "block";
         startQuiz();
+        
         // to display this on the screen (welcome, [UserName])
         document.getElementById("user-name").textContent = userName;
     }, 1000);
@@ -229,9 +238,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
+
+
     function startQuiz() {    
         shuffleArray(selectedQuestions);
-         
+        shuffleArray(selectedQuestions[currentQuestion].options);
+
+         // selectedQuestions[currentQuestion].options;
+        
         document.getElementById("user-name").textContent = userName;
          
         console.log(` --------------${userName}------------`);
