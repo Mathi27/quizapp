@@ -1,354 +1,510 @@
 const level2Questions = [
- 
-  {
-    question: "2 less than 468?",
-    options: ["457", "466", "461", "458", "467"],
-    answer: "466"
-  },
-  {
-    question: "2 less than 65?",
-    options: ["64", "57", "63", "54"],
-    answer: "63"
-  },
-  {
-    question: "2 less than 38?",
-    options: ["34", "33", "36", "30"],
-    answer: "36"
-  },
-  {
-    question: "2 less than 114?",
-    options: ["110", "108", "112", "103"],
-    answer: "112"
-  },
-  {
-    question: "2 less than 20?",
-    options: ["14", "16", "12", "18"],
-    answer: "18"
-  },
-  {
-    question: "2 less than 405?",
-    options: ["400", "395", "403", "397"],
-    answer: "403"
-  },
-  {
-    question: "2 less than 430?",
-    options: ["423", "427", "425", "428"],
-    answer: "428"
-  },
-  {
-    question: "2 less than 254?",
-    options: ["249", "246", "252", "251"],
-    answer: "252"
-  },
-  {
-    question: "2 less than 190?",
-    options: ["182", "184", "187", "188"],
-    answer: "188"
-  },
-  {
-    question: "2 less than 162?",
-    options: ["158", "153", "161", "160"],
-    answer: "160"
-  },
-  {
-    question: "2 less than 56?",
-    options: ["54", "46", "54", "49"],
-    answer: "54"
-  },
-  {
-    question: "2 less than 51?",
-    options: ["49", "47", "49", "43"],
-    answer: "49"
-  },
-  {
-    question: "2 less than 818?",
-    options: ["807", "811", "816", "816"],
-    answer: "816"
-  },
-  {
-    question: "2 less than 789?",
-    options: ["787", "778", "787", "779"],
-    answer: "787"
-  },
-  {
-    question: "2 less than 130?",
-    options: ["121", "122", "128", "128"],
-    answer: "128"
-  },
-  {
-    question: "2 less than 658?",
-    options: ["656", "648", "656", "647"],
-    answer: "656"
-  },
-  {
-    question: "2 less than 87?",
-    options: ["85", "79", "85"],
-    answer: "85"
-  },
-  {
-    question: "2 less than 842?",
-    options: ["836", "837", "836", "840"],
-    answer: "840"
-  },
-  {
-    question: "2 less than 837?",
-    options: ["833", "835", "834", "832"],
-    answer: "835"
-  },
-  {
-    question: "2 less than 640?",
-    options: ["634", "635", "638", "631"],
-    answer: "638"
-  },
-  {
-    question: "2 less than 712?",
-    options: ["710", "715", "706", "708"],
-    answer: "710"
-  },
-  {
-    question: "2 less than 96?",
-    options: ["91", "98", "94", "94"],
-    answer: "94"
-  },
-  {
-    question: "2 less than 53?",
-    options: ["50", "49", "56", "51"],
-    answer: "51"
-  },
-  {
-    question: "2 less than 123?",
-    options: ["121", "118", "124", "121"],
-    answer: "121"
-  },
-  {
-    question: "2 less than 30?",
-    options: ["29", "32", "26", "28"],
-    answer: "28"
-  },
-  {
-    question: "2 less than 567?",
-    options: ["560", "565", "570", "563"],
-    answer: "565"
-  },
-  {
-    question: "2 less than 402?",
-    options: ["398", "405", "403", "400"],
-    answer: "400"
-  },
-  {
-    question: "2 less than 189?",
-    options: ["187", "183", "192", "187"],
-    answer: "187"
-  },
-  {
-    question: "2 less than 277?",
-    options: ["273", "275", "270", "279"],
-    answer: "275"
-  },
-  {
-    question: "2 less than 145?",
-    options: ["144", "143", "150", "140"],
-    answer: "143"
-  },
-  {
-    question: "2 less than 63?",
-    options: ["59", "66", "61", "62"],
-    answer: "61"
-  },
-  {
-    question: "2 less than 42?",
-    options: ["46", "44", "41", "40"],
-    answer: "40"
-  },
-  {
-    question: "2 less than 928?",
-    options: ["925", "932", "926", "922"],
-    answer: "926"
-  },
-  {
-    question: "2 less than 801?",
-    options: ["797", "805", "799", "802"],
-    answer: "799"
-  },
-  {
-    question: "2 less than 175?",
-    options: ["174", "170", "180", "173"],
-    answer: "173"
-  },
-  {
-    question: "2 less than 764?",
-    options: ["760", "763", "770", "762"],
-    answer: "762"
-  },
-  {
-    question: "2 less than 94?",
-    options: ["93", "98", "90", "92"],
-    answer: "92"
-  },
-  {
-    question: "2 less than 572?",
-    options: ["568", "570", "578", "571"],
-    answer: "570"
-  },
-  {
-    question: "2 less than 209?",
-    options: ["210", "205", "207", "212"],
-    answer: "207"
-  },
-  {
-    question: "2 less than 740?",
-    options: ["746", "736", "739", "738"],
-    answer: "738"
-  },
-  {
-    question: "2 less than 321?",
-    options: ["315", "318", "319", "324"],
-    answer: "319"
-  },
-  {
-    question: "2 less than 50?",
-    options: ["54", "48", "46", "49"],
-    answer: "48"
-  },
-  {
-    question: "2 less than 78?",
-    options: ["74", "80", "76", "77"],
-    answer: "76"
-  },
-  {
-    question: "2 less than 195?",
-    options:
+  
+    {
+        question: "Add +2 to: 17?",
+        options: ["20", "19", "18", "21"],
+        answer: "19"
+    },
+    {
+        question: "Add +2 to: 93?",
+        options: ["96", "97", "94", "95"],
+        answer: "95"
+    },
+    {
+        question: "Add +2 to: 41?",
+        options: ["44", "43", "42", "45"],
+        answer: "43"
+    },
+    {
+        question: "Add +2 to: 72?",
+        options: ["70", "73", "71", "74"],
+        answer: "74"
+    },
+    {
+        question: "Add +2 to: 3?",
+        options: ["4", "6", "5", "2"],
+        answer: "5"
+    },
+    {
+        question: "Add +2 to: 56?",
+        options: ["57", "55", "54", "58"],
+        answer: "58"
+    },
+    {
+        question: "Add +2 to: 28?",
+        options: ["29", "31", "27", "30"],
+        answer: "30"
+    },
+    {
+        question: "Add +2 to: 85?",
+        options: ["86", "88", "84", "87"],
+        answer: "87"
+    },
+    {
+        question: "Add +2 to: 10?",
+        options: ["8", "9", "12", "11"],
+        answer: "12"
+    },
+    {
+        question: "Add +2 to: 49?",
+        options: ["50", "48", "47", "51"],
+        answer: "51"
+    },
+    {
+        question: "Add +2 to: 64?",
+        options: ["63", "65", "62", "66"],
+        answer: "66"
+    },
+    {
+        question: "Add +2 to: 2?",
+        options: ["1", "4", "0", "3"],
+        answer: "4"
+    },
+    {
+        question: "Add +2 to: 98?",
+        options: ["96", "97", "100", "99"],
+        answer: "100"
+    },
+    {
+        question: "Add +2 to: 37?",
+        options: ["38", "36", "39", "35"],
+        answer: "39"
+    },
+    {
+        question: "Add +2 to: 7?",
+        options: ["8", "5", "6", "9"],
+        answer: "9"
+    },
+    {
+        question: "Add +2 to: 20?",
+        options: ["21", "22", "18", "19"],
+        answer: "22"
+    },
+    {
+        question: "Add +2 to: 79?",
+        options: ["78", "80", "77", "81"],
+        answer: "81"
+    },
+    {
+        question: "Add +2 to: 61?",
+        options: ["60", "63", "59", "62"],
+        answer: "63"
+    },
+    {
+        question: "Add +2 to: 16?",
+        options: ["14", "18", "15", "17"],
+        answer: "18"
+    },
+    {
+        question: "Add +2 to: 95?",
+        options: ["96", "93", "97", "94"],
+        answer: "97"
+    },
+    {
+        question: "Add +2 to: 87?",
+        options: ["86", "89", "85", "88"],
+        answer: "89"
+    },
+    {
+        question: "Add +2 to: 1?",
+        options: ["3", "0", "2", "-1"],
+        answer: "3"
+    },
+    {
+        question: "Add +2 to: 68?",
+        options: ["69", "70", "67", "66"],
+        answer: "70"
+    },
+    {
+        question: "Add +2 to: 32?",
+        options: ["33", "31", "30", "34"],
+        answer: "34"
+    },
+    {
+        question: "Add +2 to: 52?",
+        options: ["51", "54", "50", "53"],
+        answer: "54"
+    },
+    {
+        question: "Add +2 to: 96?",
+        options: ["97", "98", "94", "95"],
+        answer: "98"
+    },
+    {
+        question: "Add +2 to: 9?",
+        options: ["10", "8", "11", "7"],
+        answer: "11"
+    },
+    {
+        question: "Add +2 to: 44?",
+        options: ["43", "46", "42", "45"],
+        answer: "46"
+    },
+    {
+        question: "Add +2 to: 71?",
+        options: ["70", "72", "69", "73"],
+        answer: "73"
+    },
+    {
+        question: "Add +2 to: 53?",
+        options: ["55", "51", "52", "54"],
+        answer: "55"
+    },
+    {
+        question: "Add +2 to: 39?",
+        options: ["41", "37", "38", "40"],
+        answer: "41"
+    },
+    {
+        question: "Add +2 to: 23?",
+        options: ["24", "22", "25", "21"],
+        answer: "25"
+    },
+    {
+        question: "Add +2 to: 5?",
+        options: ["6", "3", "4", "7"],
+        answer: "7"
+    },
+    {
+        question: "Add +2 to: 83?",
+        options: ["82", "85", "84", "81"],
+        answer: "85"
+    },
+    {
+        question: "Add +2 to: 65?",
+        options: ["66", "64", "67", "63"],
+        answer: "67"
+    },
+    {
+        question: "Add +2 to: 76?",
+        options: ["74", "77", "75", "78"],
+        answer: "78"
+    },
+    {
+        question: "Add +2 to: 35?",
+        options: ["34", "37", "36", "33"],
+        answer: "37"
+    },
+    {
+        question: "Add +2 to: 14?",
+        options: ["15", "13", "16", "12"],
+        answer: "16"
+    },
+    {
+        question: "Add +2 to: 25?",
+        options: ["24", "27", "26", "23"],
+        answer: "27"
+    },
+    {
+        question: "Add +2 to: 70?",
+        options: ["69", "72", "71", "68"],
+        answer: "72"
+    },
+    {
+        question: "Add +2 to: 31?",
+        options: ["32", "30", "33", "29"],
+        answer: "33"
 
- ["192", "200", "193", "194"],
-    answer: "193"
-  },
-  {
-    question: "2 less than 17?",
-    options: ["13", "19", "16", "15"],
-    answer: "15"
-  },
-  {
-    question: "2 less than 621?",
-    options: ["615", "620", "624", "619"],
-    answer: "619"
-  },
-  {
-    question: "2 less than 384?",
-    options: ["383", "390", "382", "380"],
-    answer: "382"
-  },
-  {
-    question: "2 less than 267?",
-    options: ["266", "260", "265", "272"],
-    answer: "265"
-  },
-  {
-    question: "2 less than 142?",
-    options: ["141", "145", "138", "140"],
-    answer: "140"
-  },
-  {
-    question: "2 less than 331?",
-    options: ["330", "334", "326", "329"],
-    answer: "329"
-  },
-  {
-    question: "2 less than 75?",
-    options: ["74", "78", "70", "73"],
-    answer: "73"
-  },
-  {
-    question: "2 less than 62?",
-    options: ["61", "64", "60", "58"],
-    answer: "60"
-  },
-  {
-    question: "2 less than 912?",
-    options: ["916", "906", "911", "910"],
-    answer: "910"
-  },
-  {
-    question: "2 less than 847?",
-    options: ["842", "852", "845", "846"],
-    answer: "845"
-  },
-  {
-    question: "2 less than 162?",
-    options: ["158", "161", "160", "168"],
-    answer: "160"
-  },
-  {
-    question: "2 less than 533?",
-    options: ["528", "532", "536", "531"],
-    answer: "531"
-  },
-  {
-    question: "2 less than 93?",
-    options: ["96", "88", "92", "91"],
-    answer: "91"
-  },
-  {
-    question: "2 less than 671?",
-    options: ["664", "674", "669", "670"],
-    answer: "669"
-  },
-  {
-    question: "2 less than 228?",
-    options: ["224", "232", "226", "227"],
-    answer: "226"
-  },
-  {
-    question: "2 less than 768?",
-    options: ["762", "770", "767", "766"],
-    answer: "766"
-  },
-  {
-    question: "2 less than 410?",
-    options: ["412", "404", "409", "408"],
-    answer: "408"
-  },
-  {
-    question: "2 less than 135?",
-    options: ["138", "134", "130", "133"],
-    answer: "133"
-  },
-  {
-    question: "2 less than 893?",
-    options: ["892", "898", "888", "891"],
-    answer: "891"
-  },
-  {
-    question: "2 less than 357?",
-    options: ["352", "362", "355", "356"],
-    answer: "355"
-  },
-  {
-    question: "2 less than 44?",
-    options: ["40", "46", "43", "42"],
-    answer: "42"
-  },
-  {
-    question: "2 less than 576?",
-    options: ["578", "572", "575", "574"],
-    answer: "574"
-  },
-  {
-    question: "2 less than 213?",
-    options: ["218", "208", "211", "212"],
-    answer: "211"
-  },
-  {
-    question: "2 less than 817?",
-    options: ["816", "822", "815", "812"],
-    answer: "815"
-  },
-  {
-    question: "2 less than 741?",
-    options: ["740", "746", "739", "736"],
-    answer: "739"
-  }
+
+    },
+    {
+        question: "Add +2 to: 86?",
+        options: ["85", "87", "88", "84"],
+        answer: "88"
+    },
+    {
+        question: "Add +2 to: 60?",
+        options: ["61", "59", "62", "58"],
+        answer: "62"
+    },
+    {
+        question: "Add +2 to: 78?",
+        options: ["77", "80", "76", "79"],
+        answer: "80"
+    },
+    {
+        question: "Add +2 to: 13?",
+        options: ["12", "15", "14", "11"],
+        answer: "15"
+    },
+    {
+        question: "Add +2 to: 58?",
+        options: ["59", "57", "60", "56"],
+        answer: "60"
+    },
+    {
+        question: "Add +2 to: 21?",
+        options: ["22", "23", "20", "19"],
+        answer: "23"
+    },
+    {
+        question: "Add +2 to: 81?",
+        options: ["82", "80", "83", "79"],
+        answer: "83"
+    },
+    {
+        question: "Add +2 to: 45?",
+        options: ["46", "47", "44", "43"],
+        answer: "47"
+    },
+    {
+        question: "Add +2 to: 6?",
+        options: ["8", "7", "5", "4"],
+        answer: "8"
+    },
+    {
+        question: "Add +2 to: 11?",
+        options: ["12", "9", "13", "10"],
+        answer: "13"
+    },
+    {
+        question: "Add +2 to: 48?",
+        options: ["47", "50", "49", "46"],
+        answer: "50"
+    },
+    {
+        question: "Add +2 to: 80?",
+        options: ["82", "79", "81", "78"],
+        answer: "82"
+    },
+    {
+        question: "Add +2 to: 19?",
+        options: ["18", "21", "20", "17"],
+        answer: "21"
+    },
+    {
+        question: "Add +2 to: 97?",
+        options: ["99", "96", "98", "95"],
+        answer: "99"
+    },
+    {
+        question: "Add +2 to: 69?",
+        options: ["71", "68", "70", "67"],
+        answer: "71"
+    },
+    {
+        question: "Add +2 to: 24?",
+        options: ["26", "25", "27", "23"],
+        answer: "26"
+    },
+    {
+        question: "Add +2 to: 74?",
+        options: ["76", "73", "72", "75"],
+        answer: "76"
+    },
+    {
+        question: "Add +2 to: 54?",
+        options: ["55", "53", "56", "52"],
+        answer: "56"
+    },
+    {
+        question: "Add +2 to: 67?",
+        options: ["69", "68", "66", "65"],
+        answer: "69"
+    },
+    {
+        question: "Add +2 to: 38?",
+        options: ["40", "37", "39", "36"],
+        answer: "40"
+    },
+    {
+        question: "Add +2 to: 18?",
+        options: ["20", "17", "19", "16"],
+        answer: "20"
+    },
+    {
+        question: "Add +2 to: 8?",
+        options: ["10", "7", "9", "6"],
+        answer: "10"
+    },
+    {
+        question: "Add +2 to: 62?",
+        options: ["64", "61", "63", "60"],
+        answer: "64"
+    },
+    {
+        question: "Add +2 to: 29?",
+        options: ["31", "28", "30", "27"],
+        answer: "31"
+    },
+    {
+        question: "Add +2 to: 50?",
+        options: ["52", "49", "51", "48"],
+        answer: "52"
+    },
+    {
+        question: "Add +2 to: 12?",
+        options: ["14", "11", "13", "10"],
+        answer: "14"
+    },
+    {
+        question: "Add +2 to: 59?",
+        options: ["61", "58", "60", "57"],
+        answer: "61"
+    },
+    {
+        question: "Add +2 to: 89?",
+        options: ["91", "88", "90", "87"],
+        answer: "91"
+    },
+    {
+        question: "Add +2 to: 27?",
+        options: ["29", "26", "28", "25"],
+        answer: "29"
+    },
+    {
+        question: "Add +2 to: 36?",
+        options: ["38", "35", "37", "34"],
+        answer: "38"
+    },
+    {
+        question: "Add +2 to: 84?",
+        options: ["86", "83", "85", "82"],
+        answer: "86"
+    },
+    {
+        question: "Add +2 to: 75?",
+        options: ["77", "74", "76", "73"],
+        answer: "77"
+    },
+    {
+
+
+        question: "Add +2 to: 55?",
+        options: ["57", "54", "56", "53"],
+        answer: "57"
+    },
+    {
+        question: "Add +2 to: 0?",
+        options: ["2", "-1", "1", "-2"],
+        answer: "2"
+    },
+    {
+        question: "Add +2 to: 63?",
+        options: ["65", "62", "64", "61"],
+        answer: "65"
+    },
+    {
+        question: "Add +2 to: 47?",
+        options: ["49", "46", "48", "45"],
+        answer: "49"
+    },
+    {
+        question: "Add +2 to: 99?",
+        options: ["101", "98", "100", "97"],
+        answer: "101"
+    },
+    {
+        question: "Add +2 to: 73?",
+        options: ["75", "72", "74", "71"],
+        answer: "75"
+    },
+    {
+        question: "Add +2 to: 91?",
+        options: ["93", "90", "92", "89"],
+        answer: "93"
+    },
+    {
+        question: "Add +2 to: 43?",
+        options: ["45", "42", "44", "41"],
+        answer: "45"
+    },
+    {
+        question: "Add +2 to: 30?",
+        options: ["32", "29", "31", "28"],
+        answer: "32"
+    },
+    {
+        question: "Add +2 to: 15?",
+        options: ["17", "14", "16", "13"],
+        answer: "17"
+    },
+    {
+        question: "Add +2 to: 51?",
+        options: ["53", "50", "52", "49"],
+        answer: "53"
+    },
+    {
+        question: "Add +2 to: 94?",
+        options: ["96", "93", "95", "92"],
+        answer: "96"
+    },
+    {
+        question: "Add +2 to: 22?",
+        options: ["24", "21", "23", "20"],
+        answer: "24"
+    },
+    {
+        question: "Add +2 to: 57?",
+        options: ["59", "56", "58", "55"],
+        answer: "59"
+    },
+    {
+        question: "Add +2 to: 46?",
+        options: ["48", "45", "47", "44"],
+        answer: "48"
+    },
+    {
+        question: "Add +2 to: 90?",
+        options: ["92", "89", "91", "88"],
+        answer: "92"
+    },
+    {
+        question: "Add +2 to: 26?",
+        options: ["28", "25", "27", "24"],
+        answer: "28"
+    },
+    {
+        question: "Add +2 to: 82?",
+        options: ["84", "81", "83", "80"],
+        answer: "84"
+    },
+    {
+        question: "Add +2 to: 4?",
+        options: ["6", "3", "5", "2"],
+        answer: "6"
+    },
+    {
+        question: "Add +2 to: 40?",
+        options: ["42", "39", "41", "38"],
+        answer: "42"
+    },
+    {
+        question: "Add +2 to: 88?",
+        options: ["90", "87", "89", "86"],
+        answer: "90"
+    },
+    {
+        question: "Add +2 to: 66?",
+        options: ["68", "65", "67", "64"],
+        answer: "68"
+    },
+    {
+        question: "Add +2 to: 42?",
+        options: ["44", "41", "43", "40"],
+        answer: "44"
+    },
+    {
+        question: "Add +2 to: 77?",
+        options: ["79", "76", "78", "75"],
+        answer: "79"
+    },
+    {
+        question: "Add +2 to: 92?",
+        options: ["94", "91", "93", "90"],
+        answer: "94"
+    },
+    {
+        question: "Add +2 to: 34?",
+        options: ["36", "33", "35", "32"],
+        answer: "36"
+    },
+    {
+        question: "Add +2 to: 33?",
+        options: ["35", "34", "36", "32"],
+        answer: "35"
+    }
  
-    // Add more Level 2 questions...
   ];
   
   export default level2Questions
