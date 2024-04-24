@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     userName = userNameInput.value;
     const phoneNumber = phoneNumberInput.value.trim();
     selectedLevel = document.getElementById("level-selector").value;
+ 
     selectedQuestions = questions(selectedLevel);
          
         if (!userName || !phoneNumber) {
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
          setTimeout(() => {
-            
+    
         const selectedLevel = document.getElementById("level-selector").value;
         currentLevel = parseInt(selectedLevel); // Set the current level
             
@@ -183,10 +184,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
+        if (!event.target.matches('.dropbtn')) { 
             var dropdowns = document.getElementsByClassName("dropdown-content");
             for (var i = 0; i < dropdowns.length; i++) {
                 var openDropdown = dropdowns[i];
+                
                 if (openDropdown.style.display === "block") {
                     openDropdown.style.display = "none";
                 }
@@ -195,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function startQuiz(){    
+        console.log("-----Working-----");
+        console.log(`--Selected Level ---${selectedLevel}----`);
+        
         shuffleArray(selectedQuestions);
         shuffleArray(selectedQuestions[currentQuestion].options);
         console.log(selectedQuestions[currentQuestion].options);
@@ -205,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         displayQuestion();
         timer = setInterval(updateTimer, 1000);
+   
     }
 
     function playSound(isCorrect){
@@ -217,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
             wrongSound.play();
         }
     }
-
+    let consecutiveCorrectAnswers = 0;
     function checkAnswer(selectedOption) {
         // console.log(`Selected Option: ${selectedOption}, Correct Answer: ${correctAnswer}`);
         const correctAnswer = selectedQuestions[currentQuestion].answer;
@@ -227,15 +233,24 @@ document.addEventListener("DOMContentLoaded", () => {
             correctAnswers++;
             score++;
             playSound(true);
+            consecutiveCorrectAnswers++; 
             console.log(`Score Incremented: ${score}`);
         }else{
             wrongAnswers++;
             if(score > 0){
                 score--;
             }
+            consecutiveCorrectAnswers = 0; 
             playSound(false);
             console.log(`Score Decremented: ${score}`);
         }
+        if (consecutiveCorrectAnswers === 10) { // Check if user has answered 10 consecutive correct answers
+            currentLevel++; // Increment the current level
+            selectedQuestions = questions(currentLevel.toString()); // Fetch questions for the next level
+            consecutiveCorrectAnswers = 0; // Reset consecutive correct answers count
+           
+        }
+    
         currentQuestion++;
         displayQuestion();
 
@@ -260,6 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 timerCompletionSound.play();
                 hasPlayedCompletionSound = true;
             }
+
                 // Calculate the number of correct and wrong answers
         const correctAnswersPercentage = Math.round((correctAnswers / selectedQuestions.length) * 100);
         const wrongAnswersPercentage = Math.round((wrongAnswers / selectedQuestions.length) * 100);
@@ -286,10 +302,17 @@ document.addEventListener("DOMContentLoaded", () => {
             timerDisplay.textContent = timeLeft;
         }
     }
-
+    // let count_of_score_update = 0;
     function displayQuestion() {
+        // if(score > 10 && count_of_score_update>0){
+        //     console.log(`-Score:-${score}---`)
+        //     selectedLevel++;
+        //     count_of_score_update++;
+        //     displayQuestion();
+        // }
         // Clear options container
     optionsContainer.innerHTML = "";
+
         if (currentQuestion < selectedQuestions.length) {
             const questionData = selectedQuestions[currentQuestion];
             document.getElementById("question").textContent = questionData.question;
@@ -318,6 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
         restartButton.style.display = "block";
            
         }
+    //       // Check if score is greater than 10 and current level is less than 6
+    // if (score > 10 && currentLevel < 7) {
+    //     currentLevel++; // Increment the current level
+    //     selectedQuestions = questions(currentLevel.toString()); // Fetch questions for the next level
+    //     // Update UI to reflect the change in level if necessary
+    // }
     }
 });
 
