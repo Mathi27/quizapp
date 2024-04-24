@@ -1,5 +1,5 @@
-const level2Questions = [
   
+const level2Questions = [
     {
         question: "Add +2 to: 17?",
         options: ["20", "19", "18", "21"],
@@ -506,5 +506,15 @@ const level2Questions = [
     }
  
   ];
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
   
+  level2Questions.forEach(question => {
+    question.options = shuffleArray(question.options);
+  });
   export default level2Questions
