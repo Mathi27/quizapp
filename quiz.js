@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const markContainer = document.getElementById("mark-container");
     const collectDataButton = document.getElementById("collect-data-button")
     const userNameInput = document.getElementById("user-name-input");
-    const phoneNumberInput = document.getElementById("phone-number-input");
+    const AgeCollect = document.getElementById("age-input");
     const inputContainer = document.getElementById("input-container");
     const hiringBanner = document.getElementById("banner");
  
@@ -193,13 +193,13 @@ document.addEventListener("DOMContentLoaded", () => {
     collectDataButton.addEventListener("click", () =>   {
 
     userName = userNameInput.value;
-    const phoneNumber = phoneNumberInput.value.trim();
+    const AgeInput = AgeCollect.value;
     selectedLevel = document.getElementById("level-selector").value;
  
     selectedQuestions = questions(selectedLevel);
          
-        if (!userName || !phoneNumber) {
-            alert("Please Enter both Name and Phone Number");
+        if (!userName || !AgeInput) {
+            alert("Please Enter both Name and Age");
             return;
         }
         
@@ -208,14 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("User Name should contain only letters");
             return;
         }
-
-        // Validation for Phonenumber
-        if (!/^\d+$/.test(phoneNumber)) {
-            alert("Phone Number should contain only numbers");
-            return;
-        }
-        if (!/^\d{10}$/.test(phoneNumber)) {
-            alert("Phone Number should contain exactly 10 numbers");
+        if(AgeInput<0){
+            alert("Enter Valid Age");
             return;
         }
          setTimeout(() => {

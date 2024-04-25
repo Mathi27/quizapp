@@ -16,7 +16,9 @@ body {
 
 
 }
-
+.label-ui{
+    color: #000000;
+}
 #hire-post {
     color: yellow;
     /* Default color */
