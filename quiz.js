@@ -7,7 +7,6 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-   
 }
  
 let currentQuestion = 0;
@@ -50,13 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const kovilMani = document.getElementById("kovil-mani");
     const wrongOptionSelected = document.getElementById("worngOption");
     const restartButton = document.getElementById("restart-button");
-    const markContainer = document.getElementById("mark-container");
+    const playAgainButton = document.getElementById("playagain-button");
+    const markContainer = document.getElementById("mark_cont");
     const collectDataButton = document.getElementById("collect-data-button")
     const userNameInput = document.getElementById("user-name-input");
     const AgeCollect = document.getElementById("age-input");
     const inputContainer = document.getElementById("input-container");
     const hiringBanner = document.getElementById("banner");
- 
+    const centerMainButtons  = document.getElementById("buttons-play");
+    const resultInfoContainer = document.getElementById("result-info-container");
     function showConfettiOverlay() {
         // Create the confetti overlay element
         confettiOverlay = document.createElement('div');
@@ -243,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         scoreUpdateMessage.textContent = "Updating your score to the server ..."
    
-        clearLocalStorage()
+        clearLocalStorage();
         currentQuestion = 0;
         score = 0;
         location.reload();
@@ -251,6 +252,33 @@ document.addEventListener("DOMContentLoaded", () => {
         restartButton.disabled = false
     });
 
+
+    playAgainButton.addEventListener("click", async () => {
+        // Reset quiz variables
+    currentQuestion = 0;
+    score = 0;
+    correctAnswers = 0;
+    wrongAnswers = 0;
+    consecutiveCorrectAnswers = 0; // Reset consecutive correct answers count
+    hasPlayedCompletionSound = false; // Reset completion sound flag
+
+    // Hide result display
+    resultDisplay.style.display = "none";
+  // Clear the inner HTML of the result display
+  resultDisplay.innerHTML = "";
+//   markContainer.style.display = "none";
+  centerMainButtons.style.display = "none";
+  markContainer.style.display = "none";
+//   resultInfoContainer.style.display = "none";
+gameUiDisplay.innerHTML ="";
+playerInfo.innerHTML = "";
+    // Show quiz screen
+    quizScreen.style.display = "block";
+    questionContainer.style.display = "block";
+    timerDisplay.textContent = "3";
+    // Start the quiz again
+    startQuiz();
+    });
     function stopAudio() {
         timerCompletionSound.pause();
         timerCompletionSound.currentTime = 0;
@@ -266,8 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (storedUserName) {
         userName = storedUserName;
         hasClickedStartButton = true;
-        startScreen.style.display = "none";
-        quizScreen.style.display = "block";
+        resultDisplay.style.display = "none";
+        optionsContainer.innerHTML = ""; // Clear options contain
+
         document.getElementById("user-name").textContent = userName;
         startQuiz();
     }else{
@@ -319,8 +348,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
-
+   
     function startQuiz(){    
+        
         console.log("-----Working-----");
         console.log(`--Selected Level ---${selectedLevel}----`);
         
@@ -331,8 +361,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("user-name").textContent = userName;
          
         console.log(` --------------${userName}------------`);
-        
+            // Reset UI
+    resultDisplay.style.display = "none";
+    optionsContainer.innerHTML = ""; // Clear options container
         displayQuestion();
+
+        // start timer 
         timer = setInterval(updateTimer, 1000);
    
     }
@@ -391,6 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (timeLeft <= 0 || currentQuestion >= selectedQuestions.length) {
             clearInterval(timer);
+            centerMainButtons.style.display = "block";
             questionContainer.style.display = "none";
             resultDisplay.style.display = "block";
             playerInfo.innerHTML = `Time's up, ${userName} !`;
@@ -398,6 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Completion Sound;
             if (userInteracted && !hasPlayedCompletionSound) {
+                
                 timerCompletionSound.play();
                 hasPlayedCompletionSound = true;
             }
@@ -414,6 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
              userAttemptWrongAnswer.innerHTML = ` Wrong Attempt: ${wrongAnswers}`;
  
              restartButton.style.display = "block";
+             playAgainButton.style.display = "block";
             // logic is kept as 25
             if (difference > 25) {
                 gameUiDisplay.innerHTML = `Wow! You did amazing!`;
@@ -422,6 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 gameUiDisplay.innerHTML = `Try again`;
             }
             restartButton.style.display = "block";
+            
         
         } else {
             timeLeft--;
@@ -442,7 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentQuestion < selectedQuestions.length) {
             const questionData = selectedQuestions[currentQuestion];
             document.getElementById("question").textContent = questionData.question;
-            // optionsContainer.innerHTML = "";
+            optionsContainer.innerHTML = "";
 
             questionData.options.forEach((option) => {
                 const optionButton = document.createElement("button");
@@ -465,7 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultDisplay.innerHTML += `<br>Your score: ${score}`;
 
         restartButton.style.display = "block";
-           
+        playAgainButton.style.display = "block";
         }
     //       // Check if score is greater than 10 and current level is less than 6
     // if (score > 10 && currentLevel < 7) {
