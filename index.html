@@ -53,7 +53,6 @@
                 <label class="label-ui">User Name</label>
                 <div>
                     <input type="text" id="user-name-input"   placeholder="Name">
-
                 </div>
                 
                 <label class="label-ui">Age</label>
@@ -61,7 +60,21 @@
                     <input type="number" id="age-input"    placeholder="Age">
 
                  </div>
-                 <label class="label-ui">Select Level</label>
+                 <div id="mathlevelselect" class="math-lvl-select">
+                   
+                    <input type="radio" id="addition" name="Addition" value="add"  ;>
+                    <label for="addition">Addition</label>
+                 
+                
+                    <input type="radio" id="subraction" name="Subraction" value="sub">
+                    <label for="subraction">Subraction</label>
+               
+                   
+
+                 </div>
+                
+
+                 <label class="label-ui">Difficulty</label>
                  <div>
                      <select id="level-selector">
                          <option value="0">Level 1</option>
@@ -72,8 +85,8 @@
                          <option value="5">Level 6</option>
                          <option value="6">Level 7</option>
                          <option value="7">Level 8</option>
-                         <!-- <option value="8">Level 9</option>
-                         <option value="9">Level 10</option>
+                        <option value="8">Level 9</option>
+                          <!-- <option value="9">Level 10</option>
                          <option value="10">Level 11</option>
                          <option value="11">Level 12</option>
                          <option value="12">Level 13</option>
@@ -91,7 +104,9 @@
                        
                          <!-- Add more levels as needed -->
                      </select>
-                 </div>
+               
+                 
+                </div>
                 <button id="collect-data-button" class="play-btn">Let's Play </button>
             </div>
             </div>

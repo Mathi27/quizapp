@@ -25,6 +25,8 @@ let confettiOverlay;
 // Suppose the user selected Level 1 (value "0")
 let selectedLevel = "0";
 let selectedQuestions;
+ 
+let selectedValue;
 
 
 // clear locals
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hiringBanner = document.getElementById("banner");
     const centerMainButtons  = document.getElementById("buttons-play");
     const resultInfoContainer = document.getElementById("result-info-container");
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
     function showConfettiOverlay() {
         // Create the confetti overlay element
         confettiOverlay = document.createElement('div');
@@ -185,6 +188,25 @@ document.addEventListener("DOMContentLoaded", () => {
             confettiOverlay.remove();
         }, 3000);
     }  
+       
+    document.querySelectorAll('.math-lvl-select input[type="radio"]').forEach(radioButton => {
+        radioButton.addEventListener('change', function() {
+            selectedValue = this.value;
+            // remove const here for selected level.
+              selectedLevel = document.getElementById("level-selector").value;
+            
+            // Update selectedQuestions based on the selected radio button
+            selectedQuestions = questions(selectedLevel, selectedValue);
+            
+            // Log the selected questions for debugging
+            console.log("Selected questions: ", selectedQuestions); 
+            
+            // Start the quiz if the user has already clicked the start button
+            if (hasClickedStartButton) {
+                startQuiz();
+            }
+        });
+    });
    //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
     const userAttemptWrongAnswer = document.getElementById("userWrong");
@@ -197,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const AgeInput = AgeCollect.value;
     selectedLevel = document.getElementById("level-selector").value;
  
-    selectedQuestions = questions(selectedLevel);
+ 
          
         if (!userName || !AgeInput) {
             alert("Please Enter both Name and Age");
@@ -228,15 +250,22 @@ document.addEventListener("DOMContentLoaded", () => {
         // to display this on the screen (welcome, [UserName])
         document.getElementById("user-name").textContent = userName;
     }, 1000);
-
-   
      });
 
 
     document.addEventListener("click", async () => {
         userInteracted = true;
     });
-
+    radioButtons.forEach(radioButton => {
+        radioButton.addEventListener('change', function() {
+            // Deselect other radio buttons
+            radioButtons.forEach(rb => {
+                if (rb !== radioButton) {
+                    rb.checked = false;
+                }
+            });
+        });
+    });
     restartButton.addEventListener("click", async () => {
         restartButton.disabled = true
         hiringBanner.style.display = "block";
@@ -255,12 +284,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playAgainButton.addEventListener("click", async () => {
         // Reset quiz variables
+        console.log("button clicked again");
     currentQuestion = 0;
     score = 0;
     correctAnswers = 0;
     wrongAnswers = 0;
+    currentLevel = 0; // Reset current level to 0
+    selectedLevel = "0"; // Reset selectedLevel to level 1
     consecutiveCorrectAnswers = 0; // Reset consecutive correct answers count
     hasPlayedCompletionSound = false; // Reset completion sound flag
+     
 
     // Hide result display
     resultDisplay.style.display = "none";
@@ -275,9 +308,12 @@ playerInfo.innerHTML = "";
     // Show quiz screen
     quizScreen.style.display = "block";
     questionContainer.style.display = "block";
-    timerDisplay.textContent = "3";
+    timerDisplay.textContent = "120";
     // Start the quiz again
-    startQuiz();
+    
+        startQuiz();
+     
+ 
     });
     function stopAudio() {
         timerCompletionSound.pause();
@@ -327,7 +363,6 @@ playerInfo.innerHTML = "";
 
 
     });
-   
 
   
     function toggleDropdown() {
@@ -353,7 +388,7 @@ playerInfo.innerHTML = "";
         
         console.log("-----Working-----");
         console.log(`--Selected Level ---${selectedLevel}----`);
-        
+        console.log(`--selected questions ---> ${selectedQuestions}`);
         shuffleArray(selectedQuestions);
         shuffleArray(selectedQuestions[currentQuestion].options);
         console.log(selectedQuestions[currentQuestion].options);
@@ -405,7 +440,7 @@ playerInfo.innerHTML = "";
         }
         if (consecutiveCorrectAnswers === 10) { // Check if user has answered 10 consecutive correct answers
             currentLevel++; // Increment the current level
-            selectedQuestions = questions(currentLevel.toString()); // Fetch questions for the next level
+            selectedQuestions = questions(currentLevel.toString(),selectedValue); // Fetch questions for the next level
             consecutiveCorrectAnswers = 0; // Reset consecutive correct answers count
             showConfettiOverlay();
         }
@@ -505,12 +540,6 @@ playerInfo.innerHTML = "";
         restartButton.style.display = "block";
         playAgainButton.style.display = "block";
         }
-    //       // Check if score is greater than 10 and current level is less than 6
-    // if (score > 10 && currentLevel < 7) {
-    //     currentLevel++; // Increment the current level
-    //     selectedQuestions = questions(currentLevel.toString()); // Fetch questions for the next level
-    //     // Update UI to reflect the change in level if necessary
-    // }
+    
     }
 });
-

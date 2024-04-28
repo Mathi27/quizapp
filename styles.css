@@ -304,7 +304,9 @@ button {
 #userCorrect {
     display: block;
 }
-
+#horizontal-div-level-selector{
+    display: flex;
+}
 #userWrong {
     display: block;
 }
@@ -357,9 +359,33 @@ button {
     justify-content: center;
     font-weight: 600;
 }
+#age-input{
+    width: 150px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box; /* Ensure padding and border are included in width */
+        outline: none; /* Remove outline */
+}
+#age-input::placeholder {
+    color: #999;
+}
 
 .play-btn {
     color: #111;
+    cursor: pointer ;
+}
+#mathlevelselect{
+    background-color: rgba(0, 0, 0, 0.516);
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+}
+#addition{
+    padding: 0px;
+    margin: 0px;
 }
 
 /* CSS */

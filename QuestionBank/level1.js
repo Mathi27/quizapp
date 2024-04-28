@@ -727,4 +727,3 @@ const level1Questions = [
   });
   
   export default level1Questions;
-  
