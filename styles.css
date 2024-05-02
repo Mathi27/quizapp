@@ -382,6 +382,7 @@ button {
     align-items: center;
     border-radius: 10px;
     padding: 5px;
+    margin-top: 10px;
 }
 #addition{
     padding: 0px;
