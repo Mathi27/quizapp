@@ -280,7 +280,12 @@ document.addEventListener("DOMContentLoaded", () => {
         startQuiz();
         restartButton.disabled = false
     });
-
+    // this function will listen for change in the Level selector UI and it will clear the selection of addition and subraction.
+    document.getElementById("level-selector").addEventListener("change", function () {
+        // Clear the checked property of radio buttons
+        document.getElementById("addition").checked = false;
+        document.getElementById("subraction").checked = false;
+    });
 
     playAgainButton.addEventListener("click", async () => {
         // Reset quiz variables
