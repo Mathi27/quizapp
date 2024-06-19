@@ -44,6 +44,21 @@ import level12Mul from "./QuestionBank/level12Mul.js";
 import level13Mul from "./QuestionBank/level13Mul.js";
 import level14Mul from "./QuestionBank/level14Mul.js";
 import level15Mul from "./QuestionBank/level15Mul.js";
+import level1Div from "./QuestionBank/level1Div.js";
+import level2Div from "./QuestionBank/level2Div.js";
+import level3Div from "./QuestionBank/level3Div.js";
+import level4Div from "./QuestionBank/level4Div.js";
+import level5Div from "./QuestionBank/level5Div.js";
+import level6div from "./QuestionBank/level6Div.js";
+import level7Div from "./QuestionBank/level7Div.js";
+import level8Div from "./QuestionBank/level8Div.js";
+import level9Div from "./QuestionBank/level9Div.js";
+import level10Div from "./QuestionBank/level10Div.js";
+import level11Div from "./QuestionBank/level11Div.js";
+import level12Div from "./QuestionBank/level12Div.js";
+import level13Div from "./QuestionBank/level13Div.js";
+import level15div from "./QuestionBank/level15Div.js";
+import level14Div from "./QuestionBank/level14Div.js";
 export function questions(level,mathlevel){
    switch(level){
     case "1":
@@ -57,6 +72,8 @@ export function questions(level,mathlevel){
          return level1SubQuestions;
       }else if(mathlevel == "mul"){
           return level1Mul;
+      }else if(mathlevel == "div"){
+          return level1Div;
       }
       break;
     case "2":
@@ -66,7 +83,9 @@ export function questions(level,mathlevel){
          return level2SubQuestions;
       }else if(mathlevel == "mul"){
         return level2Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level2Div;
+  }
       break;
     case "3":
       if(mathlevel == 'add'){
@@ -77,6 +96,9 @@ export function questions(level,mathlevel){
       else if(mathlevel == "mul"){
         return level3Mul;
     }
+    else if(mathlevel == "div"){
+      return level3Div;
+  }
       break;
     case "4":
       if(mathlevel == 'add'){
@@ -86,6 +108,9 @@ export function questions(level,mathlevel){
       }else if(mathlevel == "mul"){
         return level4Mul;
     }
+    else if(mathlevel == "div"){
+      return level4Div;
+  }
        break;
     case "5":
       if(mathlevel == 'add'){
@@ -94,7 +119,9 @@ export function questions(level,mathlevel){
          return level5SubQuestions;
       }else if(mathlevel == "mul"){
         return level5Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level5Div;
+  }
        break;
     case "6":
       if(mathlevel == 'add'){
@@ -103,7 +130,9 @@ export function questions(level,mathlevel){
          return level6SubQuestions;
       }else if(mathlevel == "mul"){
         return level6Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level6div;
+  }
       break;
     case "7":
       if(mathlevel == 'add'){
@@ -112,7 +141,9 @@ export function questions(level,mathlevel){
         return level7SubQuestions;
       }else if(mathlevel == "mul"){
         return level7Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level7Div;
+  }
       break;
  
     case "8":
@@ -122,7 +153,9 @@ export function questions(level,mathlevel){
        return level8SubQuestions;
       }else if(mathlevel == "mul"){
         return level8Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level8Div;
+  }
        break;
     case "9":
       if(mathlevel == 'add'){
@@ -131,7 +164,9 @@ export function questions(level,mathlevel){
           return level9SubQuestions;
       }else if(mathlevel == "mul"){
         return level9Mul;
-    }
+    }else if(mathlevel == "div"){
+      return level9Div;
+  }
       break;
      
     case "10":
@@ -142,6 +177,8 @@ export function questions(level,mathlevel){
        return level10Subquestions;
    }else if(mathlevel == "mul"){
     return level10Mul;
+}else if(mathlevel == "div"){
+  return level10Div;
 }
    break;
      
@@ -149,27 +186,38 @@ export function questions(level,mathlevel){
       if(mathlevel == "mul"){
         return level11Mul;
       }
+      else if(mathlevel == "div"){
+        return level11Div;
+      }
     break;
     case "12":
       if(mathlevel == "mul"){
         return level12Mul;
+      }else if(mathlevel == "div"){
+        return level12Div;
       }
       break;
     
     case "13":
      if(mathlevel == "mul"){
       return level13Mul;
+     }else if (mathlevel == "div"){
+      return level13Div;
      }
      break;
     case "14":
       if(mathlevel == "mul"){
         return level14Mul;
   
+       }else if(mathlevel == "div"){
+        return level14Div;
        }
        break;
     case "15":
       if(mathlevel == "mul"){
         return level15Mul;
+       }else if(mathlevel == "div"){
+        return level15div;
        }
        break;
     default:

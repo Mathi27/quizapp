@@ -230,7 +230,9 @@ levelSelector.addEventListener('change', function() {
     const levels = {
         add: 10,
         sub: 10,
-        mul: 15 // You can adjust the number of levels as needed
+        mul: 15, // You can adjust the number of levels as needed
+        div:15
+         
     };
     // Function to populate the level selector based on the selected operation
     function populateLevels(operation) {
