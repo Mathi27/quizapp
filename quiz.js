@@ -61,6 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const centerMainButtons  = document.getElementById("buttons-play");
     const resultInfoContainer = document.getElementById("result-info-container");
     const radioButtons = document.querySelectorAll('input[type="radio"]');
+    // Level Selector Variable : 
+    const levelSelector = document.getElementById('level-selector');
+    const mathLevelSelect = document.getElementById('mathlevelselect');
+//  const isMathTypeSelected = document.querySelector('input[name="operation"]:checked');
+    
     function showConfettiOverlay() {
         // Create the confetti overlay element
         confettiOverlay = document.createElement('div');
@@ -75,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <i style="--speed: 29; --bg: green" class="rectangle"></i>
       <i style="--speed: 17; --bg: blue" class="hexagram"></i>
       <i style="--speed: 33; --bg: red" class="pentagram"></i>
-      <i style="--speed: 26; --bg: yellow" class="dodecagram"></i>
+      <i style="--speed: 26; --bg: yellow//" class="dodecagram"></i>
       <i style="--speed: 24; --bg: pink" class="wavy-line"> </i>
       <i style="--speed: 5; --bg: blue" class="wavy-line"></i>
       <i style="--speed: 40; --bg: white" class="square"></i>
@@ -189,24 +194,78 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }  
        
-    document.querySelectorAll('.math-lvl-select input[type="radio"]').forEach(radioButton => {
-        radioButton.addEventListener('change', function() {
-            selectedValue = this.value;
-            // remove const here for selected level.
-              selectedLevel = document.getElementById("level-selector").value;
-            
-            // Update selectedQuestions based on the selected radio button
-            selectedQuestions = questions(selectedLevel, selectedValue);
-            
-            // Log the selected questions for debugging
-            console.log("Selected questions: ", selectedQuestions); 
-            
-            // Start the quiz if the user has already clicked the start button
-            if (hasClickedStartButton) {
-                startQuiz();
-            }
-        });
+  // Event listener for radio buttons to detect the selected operation
+document.querySelectorAll('.math-lvl-select input[type="radio"]').forEach(radioButton => {
+    radioButton.addEventListener('change', function() {
+        selectedValue = this.value;
+        populateLevels(selectedValue); // Populate levels based on the selected operation
+        // Update selectedQuestions based on the selected radio button and level
+        selectedQuestions = questions(selectedLevel, selectedValue);
+        
+        // Log the selected questions for debugging
+        console.log("Selected questions: ", selectedQuestions); 
+        
+        // Start the quiz if the user has already clicked the start button
+        if (hasClickedStartButton) {
+            startQuiz();
+        }
     });
+});
+// Event listener for the level selector to update the selected level
+levelSelector.addEventListener('change', function() {
+    selectedLevel = this.value;
+    // Update selectedQuestions based on the selected level and previously selected operation
+    selectedQuestions = questions(selectedLevel, selectedValue);
+    
+    // Log the selected questions for debugging
+    console.log("Selected questions: ", selectedQuestions);
+    
+    // Start the quiz if the user has already clicked the start button
+    if (hasClickedStartButton) {
+        startQuiz();
+    }
+});
+
+    // Level For each sub division (Addition , Subraction , Multiplication)
+    const levels = {
+        add: 10,
+        sub: 10,
+        mul: 15 // You can adjust the number of levels as needed
+    };
+    // Function to populate the level selector based on the selected operation
+    function populateLevels(operation) {
+        levelSelector.innerHTML = ''; // Clear existing options
+        const maxLevels = levels[operation];
+    
+        for (let i = 1; i <= maxLevels; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Level ${i}`;
+            levelSelector.appendChild(option);
+        }
+    
+        // Update the selected level
+        selectedLevel = levelSelector.value;
+    }
+    
+   // Event listener for radio buttons to detect the selected operation
+mathLevelSelect.addEventListener('change', (event) => {
+    if (event.target.name === 'operation') {
+        populateLevels(event.target.value);
+    }
+});
+
+// Initialize the levels based on the default selected operation
+document.addEventListener('DOMContentLoaded', () => {
+    const defaultOperation = document.querySelector('input[name="operation"]:checked');
+    if(!defaultOperation){
+        alert("Select a math level");
+    }
+    if (defaultOperation) {
+        populateLevels(defaultOperation.value);
+    }
+});
+
    //    answer
     const userAttemptCorrectAnswer = document.getElementById("userCorrect");
     const userAttemptWrongAnswer = document.getElementById("userWrong");
@@ -281,11 +340,13 @@ document.addEventListener("DOMContentLoaded", () => {
         restartButton.disabled = false
     });
     // this function will listen for change in the Level selector UI and it will clear the selection of addition and subraction.
-    document.getElementById("level-selector").addEventListener("change", function () {
-        // Clear the checked property of radio buttons
-        document.getElementById("addition").checked = false;
-        document.getElementById("subraction").checked = false;
-    });
+    // document.getElementById("level-selector").addEventListener("change", function () {
+    //     // Clear the checked property of radio buttons
+    //     document.getElementById("addition").checked = true;
+    //     document.getElementById("subraction").checked = true;
+    //     document.getElementById("Multiplication").checked = true;
+
+    // });
 
     playAgainButton.addEventListener("click", async () => {
         // Reset quiz variables

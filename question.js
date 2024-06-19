@@ -18,7 +18,6 @@ import level6questions from "./QuestionBank/level6.js";
 import level7Questions from "./QuestionBank/level7.js";
 import level8questions from "./QuestionBank/level8.js";
 import level9questions from "./QuestionBank/level9.js";
- 
 import level1SubQuestions from "./QuestionBank/level1Sub.js";
 import level2SubQuestions from "./QuestionBank/level2Sub.js";
 import level3SubQuestions from "./QuestionBank/level3Sub.js";
@@ -30,9 +29,24 @@ import level8SubQuestions from "./QuestionBank/level8Sub.js";
 import level9SubQuestions from "./QuestionBank/level9Sub.js";
 import level10questions from "./QuestionBank/level10.js";
 import level10Subquestions from "./QuestionBank/level10Sub.js";
+import level1Mul from "./QuestionBank/level1Mul.js";
+import level2Mul from "./QuestionBank/level2Mul.js";
+import level3Mul from "./QuestionBank/level3Mul.js";
+import level4Mul from "./QuestionBank/level4Mul.js";
+import level5Mul from "./QuestionBank/level5Mul.js";
+import level6Mul from "./QuestionBank/level6Mul.js";
+import level7Mul from "./QuestionBank/level7Mul.js";
+import level8Mul from "./QuestionBank/level8Mul.js";
+import level9Mul from "./QuestionBank/level9Mul.js";
+import level10Mul from "./QuestionBank/level10Mul.js";
+import level11Mul from "./QuestionBank/level11Mul.js";
+import level12Mul from "./QuestionBank/level12Mul.js";
+import level13Mul from "./QuestionBank/level13Mul.js";
+import level14Mul from "./QuestionBank/level14Mul.js";
+import level15Mul from "./QuestionBank/level15Mul.js";
 export function questions(level,mathlevel){
    switch(level){
-    case "0":
+    case "1":
       if(mathlevel == "add"){
         // addition questions
         console.log(`----math level ${mathlevel}-----`);
@@ -41,102 +55,125 @@ export function questions(level,mathlevel){
          
         // subraction questions
          return level1SubQuestions;
+      }else if(mathlevel == "mul"){
+          return level1Mul;
       }
       break;
-    case "1":
+    case "2":
       if(mathlevel == 'add'){
         return level2Questions;
       }else if(mathlevel == 'sub'){
          return level2SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level2Mul;
+    }
       break;
-    case "2":
+    case "3":
       if(mathlevel == 'add'){
         return level3Questions;
       }else if(mathlevel == "sub"){
         return level3SubQuestions; 
       }
+      else if(mathlevel == "mul"){
+        return level3Mul;
+    }
       break;
-    case "3":
+    case "4":
       if(mathlevel == 'add'){
          return level4Questions;
       }else if(mathlevel == "sub"){
          return level4SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level4Mul;
+    }
        break;
-    case "4":
+    case "5":
       if(mathlevel == 'add'){
          return level5questions;
       }else if(mathlevel == "sub"){
          return level5SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level5Mul;
+    }
        break;
-    case "5":
+    case "6":
       if(mathlevel == 'add'){
         return level6questions;
       }else if(mathlevel == "sub"){
          return level6SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level6Mul;
+    }
       break;
-    case "6":
+    case "7":
       if(mathlevel == 'add'){
          return level7Questions;
       }else if(mathlevel == "sub"){
         return level7SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level7Mul;
+    }
       break;
  
-    case "7":
+    case "8":
       if(mathlevel == 'add'){
        return level8questions;
       }else if(mathlevel == "sub"){
        return level8SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level8Mul;
+    }
        break;
-    case "8":
+    case "9":
       if(mathlevel == 'add'){
          return level9questions;
       }else if(mathlevel == "sub"){
           return level9SubQuestions;
-      }
+      }else if(mathlevel == "mul"){
+        return level9Mul;
+    }
       break;
      
-    case "9":
+    case "10":
       
     if(mathlevel == 'add'){
       return level10questions;
    }else if(mathlevel == "sub"){
        return level10Subquestions;
-   }
+   }else if(mathlevel == "mul"){
+    return level10Mul;
+}
    break;
      
-    case "10":
-      return level11questions;
     case "11":
-      return level12questions;
+      if(mathlevel == "mul"){
+        return level11Mul;
+      }
+    break;
     case "12":
-      return level13questions;
+      if(mathlevel == "mul"){
+        return level12Mul;
+      }
+      break;
+    
     case "13":
-      return level14questions;
+     if(mathlevel == "mul"){
+      return level13Mul;
+     }
+     break;
     case "14":
-      return level15questions;
+      if(mathlevel == "mul"){
+        return level14Mul;
+  
+       }
+       break;
     case "15":
-      return level16questions;
-      case "16":
-        return level17questions;
-        case "17":
-          return level18questions;
-          case "18":
-            return level19questions;
-            case "19":
-              return level20questions;
-               case "20":
-                return level21questions;
-                
-                      
-        
+      if(mathlevel == "mul"){
+        return level15Mul;
+       }
+       break;
     default:
-      return [];
+      return level16questions;
    }
 
 }

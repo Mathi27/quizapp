@@ -9,7 +9,9 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-
+#chooselevelid{
+    margin-top: 50px;
+ }
 .Welcome-label {
     font-size: 20px;
     color: #000000;
@@ -371,6 +373,9 @@ button {
 #age-input::placeholder {
     color: #999;
 }
+#chooselevelid{
+   margin-top: 50px;
+}
 
 .play-btn {
     color: #111;
@@ -541,6 +546,9 @@ button {
         margin-top: 10px;
         padding: 20px 40px;
     }
+    #chooselevelid{
+        margin-top: 50px;
+     }
 }
 
 
@@ -556,7 +564,9 @@ button {
         padding: 10px;
         border-radius: 10px;
     }
-
+    #chooselevelid{
+        margin-top: 50px;
+     }
     .top-banner {
         background-color: rgb(0, 0, 0);
         /* Green background color */
