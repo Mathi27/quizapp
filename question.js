@@ -18,7 +18,7 @@ import level6questions from "./QuestionBank/level6.js";
 import level7Questions from "./QuestionBank/level7.js";
 import level8questions from "./QuestionBank/level8.js";
 import level9questions from "./QuestionBank/level9.js";
-import level10questions from "./QuestionBank/level10.js";
+ 
 import level1SubQuestions from "./QuestionBank/level1Sub.js";
 import level2SubQuestions from "./QuestionBank/level2Sub.js";
 import level3SubQuestions from "./QuestionBank/level3Sub.js";
@@ -28,6 +28,8 @@ import level6SubQuestions from "./QuestionBank/level6Sub.js";
 import level7SubQuestions from "./QuestionBank/level7Sub.js";
 import level8SubQuestions from "./QuestionBank/level8Sub.js";
 import level9SubQuestions from "./QuestionBank/level9Sub.js";
+import level10questions from "./QuestionBank/level10.js";
+import level10Subquestions from "./QuestionBank/level10Sub.js";
 export function questions(level,mathlevel){
    switch(level){
     case "0":
@@ -101,7 +103,12 @@ export function questions(level,mathlevel){
      
     case "9":
       
-    return level10questions;
+    if(mathlevel == 'add'){
+      return level10questions;
+   }else if(mathlevel == "sub"){
+       return level10Subquestions;
+   }
+   break;
      
     case "10":
       return level11questions;
